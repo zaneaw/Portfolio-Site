@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_form_tags %}
+{% block page_content %}
+<p>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <input type="submit" value="Sumbit">
+        <input type="submit" value="Cancel" onclick="window.location.href='{% url 'projects:all' %}';return false;">
+    </form>
+</p>
+{% endblock %}

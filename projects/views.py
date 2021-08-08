@@ -1,6 +1,23 @@
 
-from django.shortcuts import render
-from .models import Project
+from projects.models import Project
+from projects.owner import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerUpdateView, OwnerDeleteView
+
+
+class ProjectListView(OwnerListView):
+    model = Project
+
+
+class ProjectDetailView(OwnerDetailView):
+    model = Project
+
+
+class ProjectCreateView(OwnerCreateView):
+    model = Project
+
+
+class ProjectUpdateView(OwnerUpdateView):
+    model = Project
+
 
 
 def project_index(request):
