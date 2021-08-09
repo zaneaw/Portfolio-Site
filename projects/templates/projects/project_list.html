@@ -1,0 +1,31 @@
+
+{% extends "base.html" %}
+{% block page_content %}
+<h1>Projects</h1>
+<a href="{% url 'projects:project_create' %}">Add a new Project</a>
+<div class="row">
+{% if project_list %}
+    {% for project in projects %}
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <img class="card-img-top" src="{{ project.image }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ project.title }}</h5>
+                    <p class="card-text">{{ project.desc|truncatewords:50 }}</p>
+                    <a href="{% url 'projects:project_detail' project.pk %}"
+                    class="btn btn-primary">
+                        Read More
+                    </a>
+                    {% if project.owner == user %}
+                    (<a href="{% url 'projects:project_update' project.pk %}">Edit</a> | 
+                    <a href="{% url 'projects:project_delete' project.pk %}">Delete</a>)
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>There are no Projects, please add some.</p>
+{% endif %}
+</div>
+{% endblock %}

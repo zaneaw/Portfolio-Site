@@ -8,10 +8,11 @@ class Project(models.Model):
     title = models.CharField(max_length=30, validators=[MinLengthValidator(2, "Must be more than 2 characters."), MaxLengthValidator(30, "Must be less than 30 characters.")])
     desc = models.TextField()
     repo = models.URLField(blank=True)
-    image = models.FilePathField(path='/img')
+    image = models.BinaryField(null=True, blank=True, editable=True)    
+    content_type = models.CharField(max_length=256, null=True, blank=True, 
+                                    help_text='The MIMEType of the file')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    updated_at = models.DateTimeField(auto_now=True)
 
     # This is what shows up in the admin list
     def __str__(self):
-        return f"{self.title} - {self.repo}\n{self.owner} - {self.updated_at}"
+        return f"{self.title} - {self.owner}"
