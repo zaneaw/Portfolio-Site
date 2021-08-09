@@ -13,7 +13,7 @@ class ProjectCreateForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['title', 'desc', 'repo', 'image']
-        labels = {'title': 'Title', 'desc': 'Description', 'repo': 'Repository Link', 'image': 'Image'}
+        labels = {'title': 'Title', 'desc': 'Description', 'repo': 'Repository Link', 'image': 'Image', 'owner': 'Created by'}
 
     # Validate pic size
     def clean(self):
@@ -33,7 +33,7 @@ class ProjectCreateForm(forms.ModelForm):
         if isinstance(f, InMemoryUploadedFile): # Extracts data from form to model
             bytearray = f.read()
             instance.content_type = f.content_type
-            instance.picture = bytearray
+            instance.image = bytearray
 
         if commit:
             instance.save()

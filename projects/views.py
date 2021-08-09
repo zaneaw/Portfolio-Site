@@ -36,9 +36,9 @@ class ProjectCreateView(LoginRequiredMixin, View):
             return render(request, self.template_name, ctx)
 
         # Add owner to model before save
-        image = form.save(commit=False)
-        image.owner = self.request.user
-        image.save()
+        project = form.save(commit=False)
+        project.owner = self.request.user
+        project.save()
         return redirect(self.success_url)
 
 

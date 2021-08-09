@@ -5,10 +5,10 @@
 <a href="{% url 'projects:project_create' %}">Add a new Project</a>
 <div class="row">
 {% if project_list %}
-    {% for project in projects %}
+    {% for project in project_list %}
         <div class="col-md-4">
             <div class="card mb-2">
-                <img class="card-img-top" src="{{ project.image }}">
+                <img class="card-img-top" src="{% url 'projects:project_picture' project.id %}">
                 <div class="card-body">
                     <h5 class="card-title">{{ project.title }}</h5>
                     <p class="card-text">{{ project.desc|truncatewords:50 }}</p>
