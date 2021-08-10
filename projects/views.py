@@ -2,10 +2,10 @@
 from django.http.response import HttpResponse
 from django.views import View
 from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from projects.owner import OwnerListView, OwnerDetailView, OwnerCreateView, OwnerUpdateView, OwnerDeleteView
+from projects.owner import OwnerListView, OwnerDetailView, OwnerDeleteView
 from projects.forms import ProjectCreateForm
 from projects.models import Project
 
@@ -70,7 +70,6 @@ class ProjectDeleteView(OwnerDeleteView):
     template_name = 'projects/project_confirm_delete.html'
 
 
-
 def stream_file(request, pk):
     image = get_object_or_404(Project, id=pk)
     response = HttpResponse()
@@ -78,4 +77,6 @@ def stream_file(request, pk):
     response['Content-Length'] = len(image.image)
     response.write(image.image)
     return response
+
+
 

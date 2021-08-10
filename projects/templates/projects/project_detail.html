@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% load humanize %}
-{% load crispy_form_tags %}
-
+{% load crispy_forms_tags %}
 {% block page_content %}
-
+<title>Detail for {{ project.title|truncatewords:10 }}</title>
 {% if project.owner == user %}
 <a href="{% url 'projects:project_update' project.id %}"><i class="fa fa-pencil"></i></a>
 <a href="{% url 'projects:project_delete' project.id %}"><i class="fa fa-trash"></i></a>
@@ -14,7 +13,7 @@
 {{ project.desc }}
 </p>
 <p>
-<a href="{% url 'project.repo' %}">View Project Source Code</a>
+<a href="{{ project.repo }}">View Project Source Code</a>
 </p>
 <p>
 <a href="{% url 'projects:all' %}">All projects</a>

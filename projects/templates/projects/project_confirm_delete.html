@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 {% block page_content %}
+<title>Delete Project?</title>
 <h1>Delete Project</h1>
 
-<p>Are you sure you want to delete the project: {{ project }}?</p>
+<p>Are you sure you want to delete the project: {{ project.title }}?</p>
 
 <form action="" method="POST">
   {% csrf_token %}
-  <input type="submit" value="Yes, delete.">
+  <input type="submit" value="Delete">
+  <input type="button" value="Go back" onclick="history.back()">
 </form>
 {% endblock %}

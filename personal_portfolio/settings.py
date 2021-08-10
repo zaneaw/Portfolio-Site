@@ -18,6 +18,10 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+# Default Title
+APP_NAME = "Zane's Portfolio Website"
+
 # Base url to serve media files
 MEDIA_URL ='/media/'
 
@@ -48,6 +52,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Applications
+    'accounts.apps.AccountsConfig',
     'projects.apps.ProjectsConfig',
 
     # Extensions
@@ -79,6 +84,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',  # Add
+                'social_django.context_processors.login_redirect', # Add
             ],
         },
     },
@@ -142,3 +149,18 @@ STATIC_ROOT ='static'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# https://python-social-auth.readthedocs.io/en/latest/configuration/django.html#authentication-backends
+# https://simpleisbetterthancomplex.com/tutorial/2016/10/24/how-to-add-social-login-to-django.html
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGOUT_REDIRECT_URL = '/projects'
+LOGIN_REDIRECT_URL = '/projects'
+
+
