@@ -8,11 +8,11 @@ from django.contrib.auth.validators import UnicodeUsernameValidator
 username_validator = UnicodeUsernameValidator()
 
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=12, min_length=2, required=True, help_text='Required: First Name',
+    first_name = forms.CharField(max_length=12, min_length=2, required=True,
                                 widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name'}))
-    last_name = forms.CharField(max_length=12, min_length=4, required=True, help_text='Required: Last Name',
+    last_name = forms.CharField(max_length=12, min_length=4, required=True,
                                widget=(forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name'})))
-    email = forms.EmailField(max_length=50, help_text='Required. Email Address.',
+    email = forms.EmailField(max_length=50,
                              widget=(forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'})))
     password1 = forms.CharField(label=_('Password'),
                                 widget=(forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'})),
@@ -22,15 +22,15 @@ class SignUpForm(UserCreationForm):
     username = forms.CharField(
         label=_('Username'),
         max_length=30,
-        help_text=_('Required. 30 characters or fewer. Letters, digits and @/./+/-/_ only.'),
+        help_text=_('30 characters or fewer. Letters, digits and @/./+/-/_ only.'),
         validators=[username_validator],
         error_messages={'unique': _("A user with that username already exists.")},
-        widget=forms.TextInput(attrs={'class': 'form-control'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'})
     )
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2',)
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
 
 
 # https://stackoverflow.com/questions/48049498/django-usercreationform-custom-fields
