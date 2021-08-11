@@ -2,7 +2,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
-        <a class="navbar-brand" href="{% url 'projects:all' %}">Zane's Portfolio</a>
+        <a class="navbar-brand" href="{% url 'projects:all' %}">Portfolio Site</a>
+              <!-- CHANGE THIS TO THE HOME PAGE ONCE CREATED -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -11,6 +12,14 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="{% url 'projects:all' %}">Home</a>
+              <!-- CHANGE THIS TO THE HOME PAGE ONCE CREATED -->
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a> 
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'projects:all' %}">View Projects</a>
+                <a class="dropdown-item" href="{% url 'projects:project_create' %}">Create Project</a>
+              </div>
             </li>
           </ul>
         </div>

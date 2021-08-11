@@ -163,4 +163,5 @@ AUTHENTICATION_BACKENDS = (
 LOGOUT_REDIRECT_URL = '/projects'
 LOGIN_REDIRECT_URL = '/projects'
 
-
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))

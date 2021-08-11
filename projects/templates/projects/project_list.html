@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 {% block page_content %}
 <title>Projects List</title>
@@ -7,7 +6,8 @@
 <a href="{% url 'logout' %}?next={% url 'projects:all' %}">Logout</a>
 <a href="{% url 'projects:project_create' %}">Add a new Project</a>
 {% else %}
-<p>You're not logged in.<br>But you can <a href="{% url 'login' %}?next={% url 'projects:all' %}">Login</a> here!</p>
+<p>You're not logged in.<br>But you can <a href="{% url 'login' %}?next={% url 'projects:all' %}">log in</a> here!</p>
+<p>If you don't have an account, you can <a href="{% url 'signup' %}?next={% url 'projects:all' %}">sign up</a> here!</p>
 {% endif %}
 <div class="row">
 {% if project_list %}

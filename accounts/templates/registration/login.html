@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block page_content %}
+<title>Login</title>
+<h2>Log In</h2>
+<form method='POST' action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type='submit' class='btn btn-primary' value='Login'/>
+    <button type='button' class='btn btn-link'><a href="{% url 'password_reset' %}">Forgot Password...</a></button>
+    <input type='hidden' name='next' value='{{ next }}'/>
+    </form>
+{% endblock %}

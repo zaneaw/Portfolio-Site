@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 {% block page_content %}
-<title>Project Form</title>
+<title>Create/Edit Project</title>
 <p>
-  <form action="" method="post" id="upload_form" enctype="multipart/form-data">
+  <form action="" method="POST" id="upload_form" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
     <input type="submit" value="Submit">
