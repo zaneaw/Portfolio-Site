@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.http import HttpResponse
 
-from .forms import SignUpForm, EditProfileForm
+from .forms import SignUpForm, EditProfileForm, ChangePasswordForm
 
 
 class SignUpView(generic.CreateView):
@@ -23,7 +23,7 @@ class EditProfileView(generic.UpdateView):
         return self.request.user
 
 class ChangePasswordView(PasswordChangeView):
-    form_class = PasswordChangeForm
+    form_class = ChangePasswordForm
     template_name = 'registration/change-password.html'
     success_url = reverse_lazy('password_success')
 
