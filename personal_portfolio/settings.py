@@ -22,12 +22,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Default Title
 APP_NAME = "Zane's Portfolio Website"
 
-# Base url to serve media files
-MEDIA_URL ='/media/'
-
-# Path where media is stored
-MEDIA_ROOT = os.path.join(BASE_DIR, '/media/')
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -137,14 +131,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-STATIC_URL = '/static/'
-
-STATIC_ROOT ='static'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -159,6 +145,20 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+STATIC_URL = '/static/'
+MEDIA_URL ='/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+    )
+
+
 
 LOGOUT_REDIRECT_URL = '/projects'
 LOGIN_REDIRECT_URL = '/projects'

@@ -9,7 +9,6 @@ urlpatterns = [
     path('project_create', views.ProjectCreateView.as_view(success_url=reverse_lazy('projects:all')), name='project_create'),
     path('<int:pk>/update', views.ProjectUpdateView.as_view(success_url=reverse_lazy('projects:all')), name='project_update'),
     path('<int:pk>/delete', views.ProjectDeleteView.as_view(success_url=reverse_lazy('projects:all')), name='project_delete'),
-    path('project_picture/<int:pk>', views.stream_file, name='project_picture'),
 ]
 
 

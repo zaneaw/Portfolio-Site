@@ -3,19 +3,29 @@
 {% load humanize %}
 {% block page_content %}
 <title>Details for {{ project.title|truncatewords:10 }}</title>
-{% if project.owner == user %}
-<a href="{% url 'projects:project_update' project.id %}"><i class="fa fa-pencil"></i></a>
-<a href="{% url 'projects:project_delete' project.id %}"><i class="fa fa-trash"></i></a>
-{% endif %}
-</span>
 <h1>{{ project.title }}</h1>
+<br>
 <p>
 {{ project.desc }}
 </p>
+<br>
+{% if project.repo %}
+    <a href="{{ project.repo }}">View Project Source Code</a>
+{% else %}
+    <p>No repository link.</p>
+{% endif %}
+<br>
+<img src="{{ project.image.url }}">
+<br>
+{% if project.owner == user %}
+    <br>
+    <p>
+        <a href="{% url 'projects:project_update' project.pk %}">Edit <i class="fa fa-pencil"></i></a> | 
+        <a href="{% url 'projects:project_delete' project.pk %}?next={% url 'projects:all' %}">Delete <i class="fa fa-trash"></i></a>
+    </p>
+    <br>
+{% endif %}
 <p>
-<a href="{{ project.repo }}">View Project Source Code</a>
-</p>
-<p>
-<a href="{% url 'projects:all' %}">All projects</a>
+<a href="{% url 'projects:all' %}">Back to all projects</a>
 </p>
 {% endblock %}

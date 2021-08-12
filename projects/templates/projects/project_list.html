@@ -14,7 +14,7 @@
     {% for project in project_list %}
         <div class="col-md-4">
             <div class="card mb-2">
-                <img class="card-img-top" src="{% url 'projects:project_picture' project.id %}">
+                <img class="card-img-top" src="{{ project.image.url }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ project.title }}</h5>
                     <p class="card-text">{{ project.desc|truncatewords:50 }}</p>
@@ -23,8 +23,8 @@
                         Read More
                     </a>
                     {% if project.owner == user %}
-                    (<a href="{% url 'projects:project_update' project.pk %}">Edit</a> | 
-                    <a href="{% url 'projects:project_delete' project.pk %}">Delete</a>)
+                    <a href="{% url 'projects:project_update' project.pk %}">Edit <i class="fa fa-pencil"></i></a> | 
+                    <a href="{% url 'projects:project_delete' project.pk %}">Delete <i class="fa fa-trash"></i></a>
                     {% endif %}
                 </div>
             </div>
