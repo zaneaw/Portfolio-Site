@@ -1,17 +1,18 @@
 from django.http.response import HttpResponse
-from django.views import View, generic
-from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic.edit import FormView, UpdateView
+from django.shortcuts import render, redirect
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from projects.owner import OwnerListView, OwnerDetailView, OwnerDeleteView
-from projects.forms import ProjectCreateForm
+from projects.forms import ProjectCreateForm, ProjectUpdateForm
 from projects.models import Project
 
 
 class ProjectListView(OwnerListView):
     model = Project
     template_name = 'projects/project_list.html'
+    ordering = ['-pk']
 
 
 class ProjectDetailView(OwnerDetailView):
@@ -19,14 +20,17 @@ class ProjectDetailView(OwnerDetailView):
     template_name = 'projects/project_detail.html'
 
 
-class ProjectCreateView(LoginRequiredMixin, View):
+class ProjectCreateView(LoginRequiredMixin, FormView):
+    model = Project
+    form_class = ProjectCreateForm
     template_name = 'projects/project_create.html'
     success_url = reverse_lazy('projects:all')
     
-    def get(self, request, pk=None):
-        form = ProjectCreateForm
-        ctx = {'form': form}
-        return render(request, self.template_name, ctx)
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed
+        # It should return an HttpResponse
+        form.send_email()
+        return super().form_valid(form)
 
     def post(self, request, pk=None):
         form = ProjectCreateForm(request.POST, request.FILES or None)
@@ -42,14 +46,17 @@ class ProjectCreateView(LoginRequiredMixin, View):
         return redirect(self.success_url)
 
 
-class ProjectUpdateView(LoginRequiredMixin, generic.UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     model = Project
+    form_class = ProjectUpdateForm
     template_name = 'projects/project_update.html'
-    fields = ['title', 'desc', 'repo', 'image']
+    # fields = ['title', 'desc', 'repo', 'image']
     success_url = reverse_lazy('projects:all')
 
 
 class ProjectDeleteView(OwnerDeleteView):
     model = Project
     template_name = 'projects/project_delete.html'
+    success_url = reverse_lazy('projects:all')
+
 

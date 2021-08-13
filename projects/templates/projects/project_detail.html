@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% load humanize %}
 {% block page_content %}
@@ -10,7 +11,7 @@
     <h2>Project Details</h2>
 {% endif %}
 <i><small> - Posted by: {{ project.owner.username }}</small></i></p>
-<br>
+<hr>
 <p>
 {{ project.desc }}
 </p>
@@ -20,9 +21,13 @@
 {% else %}
     <p>No repository link.</p>
 {% endif %}
-<br>
-<img src="{{ project.image.url }}">
-<br>
+<br>                
+{% if project.image %}
+    <img class="card-img-top" src="{{ project.image.url }}">
+    <br>
+{% else %}
+    <p>No image uploaded.</p>
+{% endif %}
 {% if project.owner == user %}
     <br>
     <p>
@@ -31,6 +36,7 @@
     </p>
     <br>
 {% endif %}
+<br>
 <p>
 <a href="{% url 'projects:all' %}">Back to all projects</a>
 </p>

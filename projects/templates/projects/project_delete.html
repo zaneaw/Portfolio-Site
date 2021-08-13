@@ -4,11 +4,10 @@
 <title>Delete Project?</title>
 <h2>Delete Project</h2>
 
-<p>Are you sure you want to delete the project: {{ project.title }}?</p>
+<p>Are you <strong>SURE</strong> you want to <strong>DELETE</strong> your project: {{ project.title }}?</p>
 
 <form action="" method="POST">
   {% csrf_token %}
-  {{ form|crispy }}
   <input type="submit" value="Delete">
   <input type="button" value="Go back" onclick="history.back()">
 </form>

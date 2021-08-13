@@ -4,12 +4,14 @@
 <title>Create Project</title>
 <h2>Create your Project</h2>
 <p>
-  <form action="" method="POST" id="upload_form" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <br>
-    <input type="submit" value="Submit" class="btn btn-primary">
-    <input type="submit" value="Cancel" class="btn btn-secondary" onclick="window.location.href='{% url 'projects:all' %}';return false;">
-  </form>
+  <div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <br>
+      <input type="submit" value="Submit" class="btn btn-primary">
+      <input type="submit" value="Cancel" class="btn btn-secondary" onclick="window.location.href='{% url 'projects:all' %}';return false;">
+    </form>
+  </div>
 </p>
 {% endblock %}

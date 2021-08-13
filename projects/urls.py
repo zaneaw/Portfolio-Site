@@ -5,9 +5,9 @@ app_name='projects'
 urlpatterns = [
     path('', ProjectListView.as_view(), name='all'),
     path('<int:pk>/', ProjectDetailView.as_view(), name='project_detail'),
-    path('project_create', ProjectCreateView.as_view(success_url=reverse_lazy('projects:all')), name='project_create'),
-    path('<int:pk>/update', ProjectUpdateView.as_view(success_url=reverse_lazy('projects:all')), name='project_update'),
-    path('<int:pk>/delete', ProjectDeleteView.as_view(success_url=reverse_lazy('projects:all')), name='project_delete'),
+    path('project_create', ProjectCreateView.as_view(), name='project_create'),
+    path('<int:pk>/update', ProjectUpdateView.as_view(), name='project_update'),
+    path('<int:pk>/delete', ProjectDeleteView.as_view(), name='project_delete'),
 ]
 
 
