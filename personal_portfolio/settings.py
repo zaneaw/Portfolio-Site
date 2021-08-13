@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     # Applications
     'accounts.apps.AccountsConfig',
+    'home.apps.HomeConfig',
     'projects.apps.ProjectsConfig',
 
     # Extensions

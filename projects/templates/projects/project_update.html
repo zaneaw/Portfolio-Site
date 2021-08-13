@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block page_content %}
+<title>Update Project</title>
+<h2>Update your Project</h2>
+<p>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <br>
+    <input type="submit" value="Submit" class="btn btn-primary">
+    <input type="submit" value="Cancel" class="btn btn-secondary" onclick="window.location.href='{% url 'projects:all' %}';return false;">
+  </form>
+</p>
+{% endblock %}

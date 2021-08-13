@@ -5,6 +5,7 @@ from django.views import generic
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .forms import SignUpForm, EditProfileForm, ChangePasswordForm
 
@@ -14,15 +15,16 @@ class SignUpView(generic.CreateView):
     template_name = 'registration/signup.html'
     success_url = reverse_lazy('login')
 
-class EditProfileView(generic.UpdateView):
+class EditProfileView(LoginRequiredMixin, generic.UpdateView):
     form_class = EditProfileForm
     template_name = 'registration/edit_profile.html'
     success_url = reverse_lazy('projects:all')
+    # Change this to View Profile View once created!
 
     def get_object(self):
         return self.request.user
 
-class ChangePasswordView(PasswordChangeView):
+class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
     form_class = ChangePasswordForm
     template_name = 'registration/change-password.html'
     success_url = reverse_lazy('password_success')

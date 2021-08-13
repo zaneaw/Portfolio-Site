@@ -17,21 +17,22 @@
                 <img class="card-img-top" src="{{ project.image.url }}">
                 <div class="card-body">
                     <h5 class="card-title">{{ project.title }}</h5>
-                    <p class="card-text">{{ project.desc|truncatewords:50 }}</p>
+                    <p class="card-text">{{ project.desc|truncatewords:50 }} <br>
+                        <i><small> - Posted by: {{ project.owner.username }}</small></i></p>
                     <a href="{% url 'projects:project_detail' project.pk %}"
                     class="btn btn-primary">
                         Read More
                     </a>
                     {% if project.owner == user %}
-                    <a href="{% url 'projects:project_update' project.pk %}">Edit <i class="fa fa-pencil"></i></a> | 
-                    <a href="{% url 'projects:project_delete' project.pk %}">Delete <i class="fa fa-trash"></i></a>
+                    <small><a href="{% url 'projects:project_update' project.pk %}">Edit <i class="fa fa-pencil"></i></a> | 
+                    <a href="{% url 'projects:project_delete' project.pk %}">Delete <i class="fa fa-trash"></i></a></small>
                     {% endif %}
                 </div>
             </div>
         </div>
     {% endfor %}
 {% else %}
-    <p>There are no Projects, please add some.</p>
+    <p>There are no Projects, try adding some!</p>
 {% endif %}
 </div>
 {% endblock %}
