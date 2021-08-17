@@ -1,5 +1,5 @@
 from django.urls import path, reverse_lazy
-from .views import ProjectListView, ProjectDetailView, ProjectCreateView, ProjectUpdateView, ProjectDeleteView
+from .views import ProjectListView, ProjectDetailView, ProjectCreateView, ProjectUpdateView, ProjectDeleteView, ProjectLikeView
 
 app_name='projects'
 urlpatterns = [
@@ -8,6 +8,7 @@ urlpatterns = [
     path('project_create', ProjectCreateView.as_view(), name='project_create'),
     path('<int:pk>/update', ProjectUpdateView.as_view(), name='project_update'),
     path('<int:pk>/delete', ProjectDeleteView.as_view(), name='project_delete'),
+    path('<int:pk>/like', ProjectLikeView, name='project_like'),
 ]
 
 

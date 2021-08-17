@@ -10,7 +10,25 @@
     <title>Project Details</title>
     <h2>Project Details</h2>
 {% endif %}
-<i><small> - Posted by: {{ project.owner.username }}</small></i></p>
+<i><small>Posted by: {{ project.owner.username }}</small></i></p>
+{% if user.is_authenticated %}
+    <form action="{% url 'projects:project_like' project.pk %}" method="POST">
+        {% csrf_token %}
+        {% if not liked %}
+            <button type="submit" name="project_pk" value="{{ project.pk }}" class="btn btn-link btn-sm"><i class="fas fa-thumbs-up fa-sm" style="color: dodgerblue;"></i></button>
+        {% else %}
+            <button type="submit" name="project_pk" value="{{ project.pk }}" class="btn btn-link btn-sm"><i class="fas fa-thumbs-down fa-sm" style="color: Tomato;"></i></button>
+        {% endif %}
+            - {{ total_likes }} 
+        {% if total_likes == 1 %} Like {% else %} Likes {% endif %}
+    </form>
+{% else %}
+    <p><button type="" class="btn btn-link btn-sm"><i class="fas fa-thumbs-up fa-sm" style="color: black;"></i></button><small>- {{ total_likes }} 
+    {% if total_likes == 1 %} Like {% else %} Likes {% endif %}</small></p>
+    <p><a type="button" class="btn btn-primary" href="{% url 'login' %}">Log in</a>
+         or <a type="button" class="btn btn-primary" href="{% url 'signup' %}?next={% url 'projects:all' %}">Sign up</a>
+          to like your favorite projects and show some support!</p>
+{% endif %} 
 <hr>
 <p>
 {{ project.desc }}
@@ -21,7 +39,7 @@
 {% else %}
     <p>No repository link.</p>
 {% endif %}
-<br>                
+<br>             
 {% if project.image %}
     <img class="card-img-top" src="{{ project.image.url }}">
     <br>
@@ -36,8 +54,8 @@
     </p>
     <br>
 {% endif %}
-<br>
+<hr>
 <p>
-<a href="{% url 'projects:all' %}">Back to all projects</a>
-</p>
+    <a href="{% url 'projects:all' %}">Back to all projects</a>
+    </p>
 {% endblock %}

@@ -1,6 +1,6 @@
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect
 from django.views.generic.edit import FormView, UpdateView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 
@@ -12,12 +12,24 @@ from projects.models import Project
 class ProjectListView(OwnerListView):
     model = Project
     template_name = 'projects/project_list.html'
-    ordering = ['-pk']
 
 
 class ProjectDetailView(OwnerDetailView):
     model = Project
     template_name = 'projects/project_detail.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ProjectDetailView, self).get_context_data() # get the context of project in the DB
+        project = get_object_or_404(Project, id=self.kwargs['pk']) # grab the current project by 'pk'
+        total_likes = project.total_likes()
+
+        liked = False # basically doing the same thing 'ProjectLikeView' at bottom
+        if project.likes.filter(id=self.request.user.id).exists():
+            liked = True
+        
+        ctx["total_likes"] = total_likes
+        ctx["liked"] = liked
+        return ctx
 
 
 class ProjectCreateView(LoginRequiredMixin, FormView):
@@ -60,3 +72,19 @@ class ProjectDeleteView(OwnerDeleteView):
     success_url = reverse_lazy('projects:all')
 
 
+def ProjectLikeView(request, pk):
+    project = get_object_or_404(Project, id=request.POST.get('project_pk'))
+    liked = False # Default value
+    if project.likes.filter(id=request.user.id).exists():
+        project.likes.remove(request.user)
+        liked = False
+    else:
+        project.likes.add(request.user)
+        liked = True
+    return HttpResponseRedirect(reverse('projects:project_detail', args=[str(pk)]))
+    # 'request' contains the users ID if logged in when clicking 'like'.
+    # project.likes.filter(id=request.user.id) then looks at the current 
+    # project's likes and filters them to show if the current user id has 
+    # liked the current project. If it exists, it 'removes' the like. If 
+    # it doesn't, it adds the like to the DB\
+    # This code then is passed into the ProjectDetailView
