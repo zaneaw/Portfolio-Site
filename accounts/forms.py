@@ -29,6 +29,7 @@ class SignUpForm(UserCreationForm):
         error_messages={'unique': _("Username already in use, please try a different one.")},
         widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'})
     )
+    # profile_pic = 
 
     class Meta:
         model = User

@@ -3,14 +3,17 @@
 {% load crispy_forms_tags %}
 {% load humanize %}
 {% block page_content %}
+
 {% if project.title %}
-    <title>{{ project.title|truncatewords:10 }}</title>
+    <title>{{ project.title|truncatechars:10 }}</title>
     <h2>{{ project.title }}</h2>
 {% else %}
     <title>Project Details</title>
     <h2>Project Details</h2>
 {% endif %}
+
 <i><small>Posted by: {{ project.owner.username }}</small></i></p>
+
 {% if user.is_authenticated %}
     <form action="{% url 'projects:project_like' project.pk %}" method="POST">
         {% csrf_token %}
@@ -28,24 +31,37 @@
     <p><a type="button" class="btn btn-primary" href="{% url 'login' %}">Log in</a>
          or <a type="button" class="btn btn-primary" href="{% url 'signup' %}?next={% url 'projects:all' %}">Sign up</a>
           to like your favorite projects and show some support!</p>
-{% endif %} 
+{% endif %}
+
+{% if project.owner.profile.profile_pic %}
+    <img src="{{ project.owner.profile.profile_pic.url }}" class="rounded-circle" width=75px height=75px>
+{% else %}
+    <img src="{% static 'personal_portfolio/images/filler_profile_image.jpg' %}" class="rounded-circle" width=75px height=75px>
+{% endif %}
+
 <hr>
+
 <p>
 {{ project.desc }}
 </p>
+
 <br>
+
 {% if project.repo %}
     <a href="{{ project.repo }}">View Project Source Code</a>
 {% else %}
     <p>No repository link.</p>
 {% endif %}
-<br>             
+
+<br>    
+
 {% if project.image %}
     <img class="card-img-top" src="{{ project.image.url }}">
     <br>
 {% else %}
     <p>No image uploaded.</p>
 {% endif %}
+
 {% if project.owner == user %}
     <br>
     <p>

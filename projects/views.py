@@ -63,7 +63,9 @@ class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     form_class = ProjectUpdateForm
     template_name = 'projects/project_update.html'
     # fields = ['title', 'desc', 'repo', 'image']
-    success_url = reverse_lazy('projects:all')
+    
+    def form_valid(self, form):
+        return redirect('projects:project_detail', self.object.pk)
 
 
 class ProjectDeleteView(OwnerDeleteView):

@@ -6,9 +6,9 @@
 {% if user.is_authenticated %}
 <a class="btn btn-primary" href="{% url 'projects:project_create' %}">Add a new Project</a>
 {% else %}
-<h6>To add projects, please:</h6>
-<p><a type="button" class="btn btn-primary" href="{% url 'signup' %}?next={% url 'projects:all' %}">Sign up</a> 
-    OR  <a type="button" class="btn btn-primary" href="{% url 'login' %}">Log in</a></p>
+<h5>To add projects, please:</h5>
+<p><a type="button" class="btn btn-primary" href="{% url 'accounts:signup' %}?next={% url 'projects:all' %}">Sign up</a> 
+    OR  <a type="button" class="btn btn-primary" href="{% url 'accounts:login' %}">Log in</a></p>
 {% endif %}
 <hr>
 <div class="row">
@@ -17,15 +17,14 @@
         <div class="col-md-4">
             <div class="card mb-2">
                 {% if project.image %}
-                    <img class="card-img-top" src="{{ project.image.url }}" width="50px" height="240px">
+                    <img class="img-fluid" src="{{ project.image.url }}">
                 {% else %}
-                    <img class="card-img-top" src="{% static 'personal_portfolio/images/filler_project_image.jpg' %}" width="50px" height="240px">
+                    <img class="img-fluid" src="{% static 'personal_portfolio/images/filler_project_image.jpg' %}">
                 {% endif %} 
                 <div class="card-body">
                     <h5 class="card-title">{{ project.title }}</h5>
                     <p class="card-text">{{ project.desc|truncatechars:80 }} <br>
-                        <i><small>Posted by: {{ project.owner.username }} - {{ project.total_likes }} 
-                        {% if project.total_likes == 1 %} Like {% else %} Likes {% endif %}</small></i></p>
+                        <i><small> - Posted by: {{ project.owner.username }}</small></i></p>
                     <a href="{% url 'projects:project_detail' project.pk %}"
                     class="btn btn-primary btn-sm btn-block">
                         Read More

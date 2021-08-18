@@ -2,6 +2,7 @@ from django.urls import path, reverse_lazy
 from .views import ProjectListView, ProjectDetailView, ProjectCreateView, ProjectUpdateView, ProjectDeleteView, ProjectLikeView
 
 app_name='projects'
+
 urlpatterns = [
     path('', ProjectListView.as_view(), name='all'),
     path('<int:pk>/', ProjectDetailView.as_view(), name='project_detail'),

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+
+<title>{{ user.username|truncatechars:10 }}'s Profile</title>
+<h2>{{ user.username|truncatechars:10 }}'s Profile</h2>
+
+{{ user.profile.profile_pic }}
+
+{% if user.profile.social_fb %}
+    {{ user.profile.social_fb }}
+{% endif %}
+
+{{ user.profile.bio }}
+
+{% endblock %}
