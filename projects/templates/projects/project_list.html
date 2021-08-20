@@ -24,15 +24,13 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ project.title }}</h5>
                     <p class="card-text">{{ project.desc|truncatechars:80 }} <br>
-                        <i><small> - Posted by: {{ project.owner.username }}</small></i></p>
-                    <a href="{% url 'projects:project_detail' project.pk %}"
-                    class="btn btn-primary btn-sm btn-block">
-                        Read More
-                    </a>
+                        <i><small> - Posted by: {{ project.owner.username }}
+                        - {{ project.total_likes }} {% if project.total_likes == 1 %} Like {% else %} Likes {% endif %}</small></i></p>
+                    <a href="{% url 'projects:project_detail' project.pk %}" class="btn btn-primary" type="button">Read More</a>
                     {% if project.owner == user %}
-                    <br>
-                    <small><a href="{% url 'projects:project_update' project.pk %}">Edit <i class="fa fa-pencil"></i></a> | 
-                    <a href="{% url 'projects:project_delete' project.pk %}">Delete <i class="fa fa-trash"></i></a></small>
+                        <br>
+                        <small><a href="{% url 'projects:project_update' project.pk %}">Edit<i class="fa fa-pencil"></i></a> | 
+                        <a href="{% url 'projects:project_delete' project.pk %}">Delete<i class="fa fa-trash"></i></a></small>
                     {% endif %}
                 </div>
             </div>
