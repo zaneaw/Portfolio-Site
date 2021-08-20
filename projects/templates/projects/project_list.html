@@ -8,7 +8,7 @@
 {% else %}
 <h5>To add projects, please:</h5>
 <p><a type="button" class="btn btn-primary" href="{% url 'accounts:signup' %}?next={% url 'projects:all' %}">Sign up</a> 
-    OR  <a type="button" class="btn btn-primary" href="{% url 'accounts:login' %}">Log in</a></p>
+    OR  <a type="button" class="btn btn-primary" href="{% url 'login' %}">Log in</a></p>
 {% endif %}
 <hr>
 <div class="row">

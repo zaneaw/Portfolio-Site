@@ -23,12 +23,11 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 {% if user.is_authenticated %}
                   <a class="dropdown-item" href="{% url 'accounts:view_profile' user.username %}">View Profile</a>
-                <!-- Fix the above link once VIEW PROFILE is ready!!!!!!!!!!!! -->
                   <a class="dropdown-item" href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
                   <a class="dropdown-item" href="{% url 'accounts:change-password' %}">Change Password</a>
                   <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
                 {% else %}
-                  <a class="dropdown-item" href="{% url 'accounts:login' %}">Log In</a>
+                  <a class="dropdown-item" href="{% url 'login' %}">Log In</a>
                   <a class="dropdown-item" href="{% url 'accounts:signup' %}">Sign Up</a>
                 {% endif %}
                 {% if user.is_superuser %}
