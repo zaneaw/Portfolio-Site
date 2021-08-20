@@ -1,13 +1,23 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block page_content %}
-<title>Login</title>
-<h2>Log In</h2>
-<form method='POST' action="">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <br>
-    <input type='submit' class='btn btn-primary' value='Login'/>
-    <button type='button' class='btn btn-link'><a href="{% url 'password_reset' %}">Forgot Password?</a></button>
-    </form>
+
+{% if not user.is_authenticated %}
+    <title>Log In</title>
+    <h2>Log In</h2>
+    <hr>
+    <form method='POST' action="">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <input type='submit' class='btn btn-primary' value='Login'/>
+        <button type='button' class='btn btn-link'><a href="{% url 'password_reset' %}">Forgot Password?</a></button>
+        </form>
+{% else %}
+    <title>Redirecting Log In Request</title>
+    <h2>Redirecting Log In Request</h2>
+    <p>You're already logged in. Redirecting shortly...</p>
+    <script>setTimeout(function(){ window.location="{% url 'projects:all' %}"; }, 4000);</script>
+{% endif %}
+
 {% endblock %}

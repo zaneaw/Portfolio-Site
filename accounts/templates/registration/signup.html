@@ -1,15 +1,23 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 {% block page_content %}
-<title>Sign Up</title>
-<h2>Sign Up</h2>
-<hr>
-<form method="POST">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <br>
-    <button type="submit" class="btn btn-primary">Sign Up</button>
-    <a type="button" class="btn btn-link" href="{% url 'login' %}">Already have an account?</a>
-</form>
-</script>
+
+{% if not user.is_authenticated %}
+    <title>Sign Up</title>
+    <h2>Sign Up</h2>
+    <hr>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <a type="button" class="btn btn-link" href="{% url 'login' %}">Already have an account?</a>
+    </form>
+{% else %}
+    <title>Redirecting Sign Up Request</title>
+    <h2>Redirecting Sign Up Request</h2>
+    <p>You're already logged in. Redirecting shortly...</p>
+    <script>setTimeout(function(){ window.location="{% url 'projects:all' %}"; }, 4000);</script>
+{% endif %}
+
 {% endblock %}

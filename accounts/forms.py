@@ -61,43 +61,18 @@ class EditProfileForm(UserChangeForm):
 
 
 class ChangePasswordForm(PasswordChangeForm):
-    old_password = forms.CharField(
-        required=True,
-        label=_("Old Password"),
-        widget=forms.PasswordInput(
-            attrs={
-                "class": "form-control",
-                "placeholder": "Old Password",
-                "type": "password",
-            }
-        ),
-    )
-    new_password1 = forms.CharField(
-        required=True,
-        label=_("Password"),
-        widget=forms.PasswordInput(
-            attrs={
-                "class": "form-control",
-                "placeholder": "New Password",
-                "type": "password",
-            }
-        ),
-    )
-    new_password2 = forms.CharField(
-        required=True,
-        label=_("Confirm Password"),
-        widget=forms.PasswordInput(
-            attrs={
-                "class": "form-control",
-                "placeholder": "Confirm New Password",
-                "type": "password",
-            }
-        ),
-    )
+    old_password = forms.CharField(required=True, label=_("Old Password"))
+    new_password1 = forms.CharField(required=True, label=_("Password"))
+    new_password2 = forms.CharField(required=True, label=_("Confirm Password"))
 
     class Meta:
         model = User
         fields = ("old_password", "new_password1", "new_password2")
+        widgets = {
+            'old_password': forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Old Password", "type": "password"}),
+            'new_password1': forms.PasswordInput(attrs={"class": "form-control","placeholder": "New Password","type": "password",}),
+            'new_password2': forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Confirm New Password", "type": "password"}),
+        }
 
 
 # https://stackoverflow.com/questions/48049498/django-usercreationform-custom-fields
