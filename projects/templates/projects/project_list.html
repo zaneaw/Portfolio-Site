@@ -13,31 +13,35 @@
 <hr>
 <div class="row">
 {% if project_list %}
-    {% for project in project_list %}
-        <div class="col-md-4">
-            <div class="card mb-2">
-                {% if project.image %}
-                    <img class="img-fluid" src="{{ project.image.url }}">
-                {% else %}
-                    <img class="img-fluid" src="{% static 'personal_portfolio/images/filler_project_image.jpg' %}">
-                {% endif %} 
-                <div class="card-body">
-                    <h5 class="card-title">{{ project.title }}</h5>
-                    <p class="card-text">{{ project.desc|truncatechars:80 }} <br>
-                        <i><small> - Posted by: {{ project.owner.username }}
-                        - {{ project.total_likes }} {% if project.total_likes == 1 %} Like {% else %} Likes {% endif %}</small></i></p>
-                    <a href="{% url 'projects:project_detail' project.pk %}" class="btn btn-primary" type="button">Read More</a>
-                    {% if project.owner == user %}
-                        <br>
-                        <small><a href="{% url 'projects:project_update' project.pk %}">Edit<i class="fa fa-pencil"></i></a> | 
-                        <a href="{% url 'projects:project_delete' project.pk %}">Delete<i class="fa fa-trash"></i></a></small>
+	{% for project in project_list %}
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    {% if project.image %}
+                        <img class="img-fluid rounded-start" src="{{ project.image.url}}">
+                    {% else %}
+                        <img class="img-fluid rounded-start" src="{% static 'personal_portfolio/images/filler_project_image.jpg' %}">
                     {% endif %}
                 </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5>
+                        <p class="card-text">{{ project.desc|truncatechars:80 }}</p>
+                        <a href="{% url 'projects:project_detail' project.pk %}" class="btn btn-primary" type="button">Read More</a>
+                        {% if project.owner == user %}
+                            <br>
+                            <small><a type="button" class="btn btn-link btn-sm" style="color: #686868;" href="{% url 'projects:project_update' project.pk %}"><i class="fa fa-pencil"></i></a>    
+                            <a type="button" class="btn btn-link btn-sm" style="color: tomato;" href="{% url 'projects:project_delete' project.pk %}"><i class="fa fa-trash"></i></a></small>
+                        {% endif %}
+                        <p class="card-text"><small class="text-muted"><i>Posted by: {{ project.owner.username }} - {{ project.total_likes }}
+                            {% if project.total_likes == 1 %} Like {% else %} Likes {% endif %}</i></small></p>
+                    </div>
+                </div>
             </div>
-        </div> 
+        </div>
     {% endfor %}
 {% else %}
-    <p>There are no projects to display, try adding some!</p>
+    <p>There are no projects to display... Maybe try adding some!</p>
 {% endif %}
 </div>
 {% endblock %}
