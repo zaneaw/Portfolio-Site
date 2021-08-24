@@ -10,13 +10,18 @@
         {% csrf_token %}
         {{ form|crispy }}
         <br>
-        <input type='submit' class='btn btn-primary' value='Login'/>
+        <input type='submit' class='btn btn-primary' value='Log In'/>
         <button type='button' class='btn btn-link'><a href="{% url 'password_reset' %}">Forgot Password?</a></button>
+        <br>
+        <p>Don't have an account?<button type='button' class='btn btn-lin'><a href="{% url 'accounts:signup' %}" >Sign Up</a></button></p>
         </form>
 {% else %}
     <title>Redirecting Log In Request</title>
-    <h2>Redirecting Log In Request</h2>
-    <p>You're already logged in. Redirecting shortly...</p>
+    <h4>Redirecting log in request...</h4>
+    <p>You're already logged in!</p>
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
     <script>setTimeout(function(){ window.location="{% url 'projects:all' %}"; }, 4000);</script>
 {% endif %}
 

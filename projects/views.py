@@ -1,5 +1,5 @@
 from django.http.response import HttpResponse, HttpResponseRedirect
-from django.views.generic.edit import FormView, UpdateView
+from django.views.generic.edit import UpdateView, FormView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -46,7 +46,7 @@ class ProjectCreateView(LoginRequiredMixin, FormView):
 
     def post(self, request, pk=None):
         form = ProjectCreateForm(request.POST, request.FILES or None)
-
+        ctx = {'form': form}
         if not form.is_valid():
             ctx = {'form': form}
             return render(request, self.template_name, ctx)
@@ -55,15 +55,34 @@ class ProjectCreateView(LoginRequiredMixin, FormView):
         project = form.save(commit=False)
         project.owner = self.request.user
         project.save()
-        return redirect(self.success_url)
+        return redirect('projects:project_detail', project.pk)
 
 
 class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     model = Project
     form_class = ProjectUpdateForm
     template_name = 'projects/project_update.html'
-    # fields = ['title', 'desc', 'repo', 'image']
     
+    def get(self, request, pk):
+        project_inst = get_object_or_404(Project, id=pk, owner=self.request.user)
+        form = ProjectCreateForm(instance=project_inst)
+        ctx = {'form': form}
+        return render(request, self.template_name, ctx)
+
+    def post(self, request, pk = None, *args, **kwargs):
+        self.object = self.get_object() # assign the object to the
+        project_inst = get_object_or_404(Project, id=pk, owner=self.request.user)
+        form = ProjectCreateForm(request.POST, request.FILES or None, instance=project_inst)
+
+        if not form.is_valid():
+            ctx = {'form': form}
+            return render(request, self.template_name, ctx)
+
+        project = form.save(commit=False)
+        project.save()
+
+        return redirect('projects:project_detail', self.object.pk)
+
     def form_valid(self, form):
         return redirect('projects:project_detail', self.object.pk)
 

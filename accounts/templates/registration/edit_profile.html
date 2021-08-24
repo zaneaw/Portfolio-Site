@@ -4,12 +4,13 @@
 
 <title>Edit Profile</title>
 <h2>Edit Profile</h2>
-
-<form method="POST">
-    {% csrf_token %}
-    {{ form|crispy }}
-    <br>
-    <p>Password:  <a href="{% url 'accounts:change-password' %}" class='btn btn-secondary'>Change Password</a></p>
-    <br><button type="submit" class="btn btn-primary">Update</button>
-</form>
+<div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <br>
+        <p>Password:  <a href="{% url 'accounts:change-password' %}" class='btn btn-secondary'>Change Password</a></p>
+        <br><button type="submit" value="Submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
 {% endblock %}

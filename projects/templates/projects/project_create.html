@@ -3,15 +3,13 @@
 {% block page_content %}
 <title>Create Project</title>
 <h2>Create your Project</h2>
-<p>
-  <div class="form-group">
-    <form method="POST" enctype="multipart/form-data">
-      {% csrf_token %}
-      {{ form|crispy }}
-      <br>
-      <input type="submit" value="Submit" class="btn btn-primary">
-      <input type="submit" value="Cancel" class="btn btn-secondary" onclick="window.location.href='{% url 'projects:all' %}';return false;">
-    </form>
-  </div>
-</p>
+<div class="form-group">
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <br>
+    <input type="submit" value="Submit" class="btn btn-primary">
+    <input type="submit" value="Cancel" class="btn btn-secondary" onclick="window.location.href='{% url 'projects:all' %}';return false;">
+  </form>
+</div>
 {% endblock %}

@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from .models import Profile
 from .forms import SignUpForm, EditProfileForm, ChangePasswordForm
 
 
@@ -24,14 +25,15 @@ class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
     
 
 class EditProfileView(LoginRequiredMixin, generic.UpdateView):
+    model = Profile
     form_class = EditProfileForm
     template_name = 'registration/edit_profile.html'
-    # Change this to View Profile View once created!
 
     def get_object(self):
         return self.request.user
 
     def form_valid(self, form):
+        form.save()
         return redirect('accounts:view_profile', self.object.username)
 
 

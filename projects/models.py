@@ -16,7 +16,6 @@ class Project(models.Model):
 
     def total_likes(self):
         return self.likes.count()
-
         
     # This is what shows up in the admin list
     def __str__(self):
