@@ -3,7 +3,7 @@
 {% block page_content %}
 <title>Projects List</title>
 <h1>Projects</h1>
-{% if user.is_authenticated %}
+{% if User.is_authenticated %}
 <a class="btn btn-primary" href="{% url 'projects:project_create' %}">Add a new Project</a>
 {% else %}
 <h5>To add projects, please:</h5>
@@ -28,7 +28,7 @@
                         <h5 class="card-title">{{ project.title }}</h5>
                         <p class="card-text">{{ project.desc|truncatechars:80 }}</p>
                         <a href="{% url 'projects:project_detail' project.pk %}" class="btn btn-primary" type="button">Read More</a>
-                        {% if project.owner == user %}
+                        {% if project.owner == User %}
                             <br>
                             <small><a type="button" class="btn btn-link btn-sm" style="color: #686868;" href="{% url 'projects:project_update' project.pk %}"><i class="fa fa-pencil"></i></a>    
                             <a type="button" class="btn btn-link btn-sm" style="color: tomato;" href="{% url 'projects:project_delete' project.pk %}"><i class="fa fa-trash"></i></a></small>

@@ -12,9 +12,9 @@
     <h2>Project Details</h2>
 {% endif %}
 
-<i><small>Posted by: {{ project.owner.username }}</small></i></p>
+<p><i>Posted by: {{ project.owner.username }} | <a href="{% url 'accounts:view_profile' project.owner.id %}"><small>View Profile</small></a></i></p>
 
-{% if user.is_authenticated %}
+{% if User.is_authenticated %}
     <form action="{% url 'projects:project_like' project.pk %}" method="POST">
         {% csrf_token %}
         {% if not liked %}
@@ -62,7 +62,7 @@
     <p>No image uploaded.</p>
 {% endif %}
 
-{% if project.owner == user %}
+{% if project.owner == User %}
     <br>
     <p>
         <a href="{% url 'projects:project_update' project.pk %}">Edit <i class="fa fa-pencil"></i></a> | 

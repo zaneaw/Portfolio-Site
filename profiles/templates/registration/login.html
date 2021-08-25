@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block page_content %}
 
-{% if not user.is_authenticated %}
+{% if not User.is_authenticated %}
     <title>Log In</title>
     <h2>Log In</h2>
     <hr>

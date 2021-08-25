@@ -141,9 +141,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://python-social-auth.readthedocs.io/en/latest/configuration/django.html#authentication-backends
 # https://simpleisbetterthancomplex.com/tutorial/2016/10/24/how-to-add-social-login-to-django.html
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.github.GithubOAuth2',
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -159,7 +156,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     )
 
-
+AUTH_USER_MODEL = 'accounts.User'
 
 LOGOUT_REDIRECT_URL = '/projects'
 LOGIN_REDIRECT_URL = '/projects'
