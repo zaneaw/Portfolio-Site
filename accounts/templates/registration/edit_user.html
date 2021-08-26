@@ -2,8 +2,8 @@
 {% load crispy_forms_tags %}
 {% block page_content %}
 
-<title>Edit Profile</title>
-<h2>Edit Profile</h2>
+<title>Edit User</title>
+<h2>Edit User</h2>
 <div class="form-group">
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
@@ -13,4 +13,5 @@
         <br><button type="submit" value="Submit" class="btn btn-primary">Update</button>
     </form>
 </div>
+ 
 {% endblock %}

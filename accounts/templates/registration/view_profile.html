@@ -2,20 +2,20 @@
 {% load static %}
 {% block page_content %}
 
-<title>{{ user.username|truncatechars:10 }}'s Profile</title>
-<h2>{{ user.username|truncatechars:10 }}'s Profile</h2>
+<title>{{ page_user.user.username|truncatechars:10 }}'s Profile</title>
+<h2>{{ page_user.user.username|truncatechars:10 }}'s Profile</h2>
 
-{% if user.profile.profile_pic %}
-                        <img class="img-fluid rounded-start" src="{{ user.profile.profile_pic.url }}">
-                    {% else %}
-                        <img class="img-fluid rounded-start" src="{% static 'personal_portfolio/images/filler_profile_image.jpg' %}" width=100px height=100px>
-                    {% endif %}
-{{ user.profile.profile_pic }}
 
-{% if user.profile.social_fb %}
-    {{ user.profile.social_fb }}
+{% if page_user.user.profile.profile_pic %}
+    <img class="img-fluid rounded-start" src="{{ page_user.user.profile.profile_pic.url }}" width=100px height=100px>
+{% else %}
+    <img class="img-fluid rounded-start" src="{% static 'personal_portfolio/images/filler_profile_image.jpg' %}" width=100px height=100px>
 {% endif %}
 
-{{ user.profile.about }}
+{% if page_user.user.profile.social_fb %}
+    {{ page_user.user.profile.social_fb }}
+{% endif %}
+
+{{ page_user.user.profile.about }}
 
 {% endblock %}
