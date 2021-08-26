@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    about = models.TextField(max_length=500, blank=True) 
+    about = models.TextField(max_length=500, null=True, blank=True) 
     profile_pic = models.ImageField(null=True, blank=True, upload_to="images/profile")
     facebook_url = models.CharField(max_length=255, null=True, blank=True)
     twitter_url = models.CharField(max_length=255, null=True, blank=True)

@@ -51,43 +51,40 @@ class EditUserForm(UserChangeForm):
             "username", 
             "first_name", 
             "last_name", 
-            "email", 
-            # "about", 
-            # "social_fb", 
-            # "social_tw",
-            # "social_insta",
-            # "social_lin",
-            # "social_git",
-            # "profile_pic"
+            "email"
             )
-        # labels = {
-        #     "social_fb": "Facebook",
-        #     "social_tw": "Twitter",
-        #     "social_insta": "Instagram",
-        #     "social_lin": "LinkedIn",
-        #     "social_git": "GitHub",
-        # }
         widgets = {
             "first_name": forms.TextInput(attrs={"class": "form-control", "placeholder": "First Name"}),
             "last_name": forms.TextInput(attrs={"class": "form-control", "placeholder": "Last Name"}),
             "email": forms.EmailInput(attrs={"class": "form-control", "placeholder": "Email", "type": "email"}),
             "username": forms.TextInput(attrs={"class": "form-control", "placeholder": "Username"}),
-            # "about": forms.Textarea(attrs={"class": "form-control", "placeholder": "Dummy text? More like dummy thicc text, amirite? <br> I'm baby bicycle rights poutine kale chips crucifix chartreuse leggings. Lo-fi mlkshk tousled, ramps PBR&B 8-bit gentrify keytar actually selvage kombucha cloud bread narwhal church-key sustainable. Pork belly put a bird on it blue bottle narwhal before they sold out authentic man braid. Edison bulb bitters artisan fam williamsburg kitsch. Biodiesel whatever marfa roof party raw denim artisan keffiyeh direct trade. <br> Photo booth iPhone art party ennui. Irony sriracha small batch meggings, ennui kale chips paleo vinyl hot chicken authentic semiotics. Tousled trust fund hexagon everyday carry, scenester cardigan keytar +1 distillery four loko messenger bag etsy. Authentic jean shorts tote bag DIY whatever. Tumblr meggings small batch messenger bag fixie. Bitters listicle pour-over freegan hella lo-fi."}),
-            # "social_fb": forms.URLInput(attrs={"class": "form-control", "placeholder": "https://facebook.com/user-name"}),
-            # "social_tw": forms.URLInput(attrs={"class": "form-control", "placeholder": "https://twitter.com/user-name"}),
-            # "social_insta": forms.URLInput(attrs={"class": "form-control", "placeholder": "https://instagram.com/user-name"}),
-            # "social_lin": forms.URLInput(attrs={"class": "form-control", "placeholder": "https://linkedin.com/in/user-name"}),
-            # "social_git": forms.URLInput(attrs={"class": "form-control", "placeholder": "https://github.com/user-name"}),
         }
 
-class EditProfileForm():
-    pass
-
+class EditProfileForm(UserChangeForm):
+    password = None
+    class Meta:
+        model = Profile
+        fields = ("about", "profile_pic", "facebook_url", "twitter_url", "instagram_url", "linkedin_url", "github_url")
+        labels = {
+            "facebook_url": "Facebook",
+            "twitter_url": "Twitter",
+            "instagram_url": "Instagram",
+            "linkedin_url": "LinkedIn",
+            "github_url": "GitHub",
+        }
+        widgets = {
+            "about": forms.Textarea(attrs={"class": "form-control", "placeholder": "Dummy text? More like dummy thicc text, amirite? I'm baby bicycle rights poutine kale chips crucifix chartreuse leggings. Lo-fi mlkshk tousled, ramps PBR&B 8-bit gentrify keytar actually selvage kombucha cloud bread narwhal church-key sustainable. Pork belly put a bird on it blue bottle narwhal before they sold out authentic man braid. Edison bulb bitters artisan fam williamsburg kitsch. Biodiesel whatever marfa roof party raw denim artisan keffiyeh direct trade. Photo booth iPhone art party ennui. Irony sriracha small batch meggings, ennui kale chips paleo vinyl hot chicken authentic semiotics. Tousled trust fund hexagon everyday carry, scenester cardigan keytar +1 distillery four loko messenger bag etsy. Authentic jean shorts tote bag DIY whatever. Tumblr meggings small batch messenger bag fixie. Bitters listicle pour-over freegan hella lo-fi."}),
+            "facebook_url": forms.TextInput(attrs={"class": "form-control", "placeholder": "https://facebook.com/user-name"}),
+            "twitter_url": forms.TextInput(attrs={"class": "form-control", "placeholder": "https://twitter.com/user-name"}),
+            "instagram_url": forms.TextInput(attrs={"class": "form-control", "placeholder": "https://instagram.com/user-name"}),
+            "linkedin_url": forms.TextInput(attrs={"class": "form-control", "placeholder": "https://linkedin.com/in/user-name"}),
+            "github_url": forms.TextInput(attrs={"class": "form-control", "placeholder": "https://github.com/user-name"}),
+        }
 
 class ChangePasswordForm(PasswordChangeForm):
     old_password = forms.CharField(required=True, label=_("Old Password"))
-    new_password1 = forms.CharField(required=True, label=_("Password"))
-    new_password2 = forms.CharField(required=True, label=_("Confirm Password"))
+    new_password1 = forms.CharField(required=True, label=_("New Password"))
+    new_password2 = forms.CharField(required=True, label=_("Confirm New Password"))
 
     class Meta:
         model = User

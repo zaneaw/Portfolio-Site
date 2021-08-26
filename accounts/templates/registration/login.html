@@ -10,7 +10,8 @@
         {% csrf_token %}
         {{ form|crispy }}
         <br>
-        <input type='submit' class='btn btn-primary' value='Log In'/>
+        <!-- <input type='hidden' name='next' value='{{ request.GET.next }}'> -->
+        <input type='submit' class='btn btn-primary' value='Log In'>
         <button type='button' class='btn btn-link'><a href="{% url 'password_reset' %}">Forgot Password?</a></button>
         <br>
         <p>Don't have an account?<button type='button' class='btn btn-lin'><a href="{% url 'accounts:signup' %}" >Sign Up</a></button></p>

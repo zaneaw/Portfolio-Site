@@ -46,7 +46,7 @@
     <p><button type="" class="btn btn-link btn-sm"><i class="fas fa-thumbs-up fa-sm" style="color: black;"></i></button><small>- {{ total_likes }} 
     {% if total_likes == 1 %} Like {% else %} Likes {% endif %}</small></p>
     <p><a type="button" class="btn btn-primary" href="{% url 'login' %}">Log in</a>
-         or <a type="button" class="btn btn-primary" href="{% url 'signup' %}?next={% url 'projects:all' %}">Sign up</a>
+         or <a type="button" class="btn btn-primary" href="{% url 'accounts:signup' %}?next={% url 'projects:all' %}">Sign up</a>
           to like your favorite projects and show some support!</p>
 {% endif %}
 
@@ -76,6 +76,6 @@
 {% endif %}
 <hr>
 <p>
-    <a href="{% url 'projects:all' %}">Back to all projects</a>
+    <a class="btn btn-primary" href="{% url 'projects:all' %}">Back to all projects</a>
     </p>
 {% endblock %}

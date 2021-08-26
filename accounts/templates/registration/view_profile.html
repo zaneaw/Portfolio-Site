@@ -5,6 +5,7 @@
 <title>{{ page_user.user.username|truncatechars:10 }}'s Profile</title>
 <h2>{{ page_user.user.username|truncatechars:10 }}'s Profile</h2>
 
+<hr>
 
 {% if page_user.user.profile.profile_pic %}
     <img class="img-fluid rounded-start" src="{{ page_user.user.profile.profile_pic.url }}" width=100px height=100px>
@@ -18,4 +19,13 @@
 
 {{ page_user.user.profile.about }}
 
+<br><br>
+
+<button class="btn btn-primary" onclick="goBack()">Go Back</button>
+
+<script>
+function goBack() {
+  window.history.back();
+}
+</script>
 {% endblock %}
