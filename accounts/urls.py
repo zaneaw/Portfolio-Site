@@ -13,7 +13,3 @@ urlpatterns = [
     path('<str:username>/view_profile/', ViewProfileView.as_view(), name='view_profile'),
     path('<str:username>/edit_profile/', EditProfileView.as_view(), name='edit_profile')
 ]
-
-
-# Working with Slugs
-# https://simpleit.rocks/python/django/generating-slugs-automatically-in-django-easy-solid-approaches/

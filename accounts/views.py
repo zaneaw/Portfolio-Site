@@ -35,21 +35,10 @@ class ViewProfileView(generic.DetailView):
     model = Profile
     template_name = 'registration/view_profile.html'
 
-    def get_context_data(self, *args, **kwargs):
-        users = Profile.objects.all()
-        ctx = super(ViewProfileView, self).get_context_data(*args, **kwargs)
-
-        page_user = get_object_or_404(Profile, id=self.kwargs['username'])
-
-        ctx['page_user'] = page_user
-        return ctx
-
     def get_object(self):
-        return self.request.user
+        return get_object_or_404(Profile, user__username=self.kwargs['username'])
 
-    def form_valid(self, form):
-        form.save()
-        return redirect('accounts:view_profile', self.object.profile.id)
+# https://stackoverflow.com/questions/68956898/return-specific-user-in-django/68956946?noredirect=1#comment121867879_68956946
 
 
 class EditProfileView(LoginRequiredMixin ,generic.UpdateView):

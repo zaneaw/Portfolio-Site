@@ -12,8 +12,8 @@
     <h2>Project Details</h2>
 {% endif %}
 
-<div><i><small>Posted by: {{ project.owner.user }} | 
-    <a href="{% url 'accounts:view_profile' project.owner.profile.id %}">View Profile</a><br></small></i>
+<div><i><small>Posted by: {{ project.owner.username }} | 
+    <a href="{% url 'accounts:view_profile' project.owner.username %}">View Profile</a><br></small></i>
     {% if project.owner.profile.facebook_url %}
         <a href="{{ project.owner.profile.facebook_url }}"><img class="fab fa-facebook-square fa-2x" style="color: gray;"></a>
     {% endif %}
