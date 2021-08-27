@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_content %}
+<br>
 
 <title>{{ object.user.username|truncatechars:10 }}'s Profile</title>
 <h2>{{ object.user.username|truncatechars:10 }}'s Profile</h2>
@@ -22,6 +23,8 @@
 <br><br>
 
 <button class="btn btn-primary" onclick="goBack()">Go Back</button>
+
+
 
 <script>
 function goBack() {

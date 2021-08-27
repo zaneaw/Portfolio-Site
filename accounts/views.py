@@ -51,7 +51,7 @@ class EditProfileView(LoginRequiredMixin ,generic.UpdateView):
 
     def form_valid(self, form):
         form.save()
-        return redirect('accounts:view_profile', self.object.id)
+        return redirect('accounts:view_profile', self.object.user.username)
 
 
 
