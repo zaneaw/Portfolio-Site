@@ -39,10 +39,17 @@ class ViewProfileView(generic.DetailView):
         users = Profile.objects.all()
         ctx = super(ViewProfileView, self).get_context_data(*args, **kwargs)
 
-        page_user = get_object_or_404(Profile, id=self.kwargs['pk'])
+        page_user = get_object_or_404(Profile, id=self.kwargs['username'])
 
         ctx['page_user'] = page_user
         return ctx
+
+    def get_object(self):
+        return self.request.user
+
+    def form_valid(self, form):
+        form.save()
+        return redirect('accounts:view_profile', self.object.profile.id)
 
 
 class EditProfileView(LoginRequiredMixin ,generic.UpdateView):
@@ -51,11 +58,11 @@ class EditProfileView(LoginRequiredMixin ,generic.UpdateView):
     template_name = 'registration/edit_profile.html'
 
     def get_object(self):
-        return get_object_or_404(User, username=self.kwargs['username'])
+        return self.request.user.profile
 
     def form_valid(self, form):
         form.save()
-        return redirect('accounts:view_profile', self.object.profile.id)
+        return redirect('accounts:view_profile', self.object.id)
 
 
 

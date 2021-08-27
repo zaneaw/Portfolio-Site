@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     # Extensions
     'django_extensions',
     'crispy_forms',
+    'autoslug',
     'social_django',
 ]
 
