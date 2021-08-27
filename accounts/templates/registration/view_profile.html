@@ -8,6 +8,23 @@
 
 <hr>
 
+<div class="row">
+{% for project in object.user.projects.project_list %}
+    <div class="carousel-item">
+        {% if project.image %}
+            <img src="{{ project.image.url }}">
+        {% else %}
+            <img class="img-fluid rounded-start" src="{% static 'personal_portfolio/images/filler_project_image.jpg' %}">
+        {% endif %}
+        <div class="carousel-caption d-none d-md-block">
+        <h5>{{ project.title }}</h5>
+        <p>{{ project.desc|truncatechars:40 }}</p>
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+
 {% if object.profile_pic %}
     <img class="img-fluid rounded-start" src="{{ object.profile_pic.url }}" width=100px height=100px>
 {% else %}
@@ -23,9 +40,6 @@
 <br><br>
 
 <button class="btn btn-primary" onclick="goBack()">Go Back</button>
-
-
-
 <script>
 function goBack() {
   window.history.back();
