@@ -15,19 +15,19 @@
 <div><i><small>Posted by: {{ project.owner.username }} | 
     <a href="{% url 'accounts:view_profile' project.owner.username %}">View Profile</a><br></small></i>
     {% if project.owner.profile.facebook_url %}
-        <a href="{{ project.owner.profile.facebook_url }}"><img class="fab fa-facebook-square fa-2x" style="color: gray;"></a>
+        <a href="{{ project.owner.profile.facebook_url }}" target="_blank"><img class="fab fa-facebook-square fa-2x" style="color: gray;"></a>
     {% endif %}
     {% if project.owner.profile.twitter_url %}
-        <a href="{{ project.owner.profile.twitter_url }}"><img class="fab fa-twitter-square fa-2x" style="color: gray;"></a>
+        <a href="{{ project.owner.profile.twitter_url }}" target="_blank"><img class="fab fa-twitter-square fa-2x" style="color: gray;"></a>
     {% endif %}
     {% if project.owner.profile.instagram_url %}
-        <a href="{{ project.owner.profile.instagram_url }}"><img class="fab fa-instagram-square fa-2x" style="color: gray;"></a>
+        <a href="{{ project.owner.profile.instagram_url }}" target="_blank"><img class="fab fa-instagram-square fa-2x" style="color: gray;"></a>
     {% endif %}
     {% if project.owner.profile.linkedin_url %}
-        <a href="{{ project.owner.profile.linkedin_url }}"><img class="fab fa-linkedin  fa-2x" style="color: gray;"></a>
+        <a href="{{ project.owner.profile.linkedin_url }}" target="_blank"><img class="fab fa-linkedin  fa-2x" style="color: gray;"></a>
     {% endif %}
     {% if project.owner.profile.github_url %}
-        <a href="{{ project.owner.profile.github_url }}"><img class="fab fa-github-square fa-2x" style="color: gray;"></a>
+        <a href="{{ project.owner.profile.github_url }}" target="_blank"><img class="fab fa-github-square fa-2x" style="color: gray;"></a>
     {% endif %}
 </div>
 

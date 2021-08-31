@@ -8,22 +8,23 @@
 
 <hr>
 
-<div class="row">
-{% for project in object.user.projects.project_list %}
-    <div class="carousel-item">
-        {% if project.image %}
-            <img src="{{ project.image.url }}">
-        {% else %}
-            <img class="img-fluid rounded-start" src="{% static 'personal_portfolio/images/filler_project_image.jpg' %}">
-        {% endif %}
-        <div class="carousel-caption d-none d-md-block">
-        <h5>{{ project.title }}</h5>
-        <p>{{ project.desc|truncatechars:40 }}</p>
-        </div>
-    </div>
-{% endfor %}
-</div>
+{% if object.facebook_url %}
+    <a href="{{ object.facebook_url }}" target="_blank"><img class="fab fa-facebook-square fa-2x" style="color: gray;"></a>
+{% endif %}
+{% if object.twitter_url %}
+    <a href="{{ object.twitter_url }}" target="_blank"><img class="fab fa-twitter-square fa-2x" style="color: gray;"></a>
+{% endif %}
+{% if object.instagram_url %}
+    <a href="{{ object.instagram_url }}" target="_blank"><img class="fab fa-instagram-square fa-2x" style="color: gray;"></a>
+{% endif %}
+{% if object.linkedin_url %}
+    <a href="{{ object.linkedin_url }}" target="_blank"><img class="fab fa-linkedin fa-2x" style="color: gray;"></a>
+{% endif %}
+{% if object.github_url %}
+    <a href="{{ object.github_url }}" target="_blank"><img class="fab fa-github-square fa-2x" style="color: gray;"></a>
+{% endif %}
 
+<br><br>
 
 {% if object.profile_pic %}
     <img class="img-fluid rounded-start" src="{{ object.profile_pic.url }}" width=100px height=100px>
@@ -31,11 +32,10 @@
     <img class="img-fluid rounded-start" src="{% static 'personal_portfolio/images/filler_profile_image.jpg' %}" width=100px height=100px>
 {% endif %}
 
-{% if object.social_fb %}
-    {{ object.social_fb }}
-{% endif %}
-
 {{ object.about }}
+
+<br><br>
+
 
 <br><br>
 
