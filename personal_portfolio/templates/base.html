@@ -1,4 +1,4 @@
-
+{% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
         <a class="navbar-brand" href="{% url 'home' %}">Zane's Portfolio Site</a>
@@ -35,6 +35,16 @@
                   <a class="dropdown-item" href="{% url 'admin:index' %}">Admin</a>
                 {% endif %}
               </ul>
+              <li class="nav-item">
+                <a class="nav-link active" style="color:white;" href="{% url 'home' %}">{{ user.username }}</a>
+              </li>
+              <li class="nav-item">
+                {% if user.profile.profile_pic %}
+                  <img class="img-fluid rounded-circle" src="{{ object.profile_pic.url }}" width=42px height=42px>
+                {% else %}
+                  <img class="img-fluid rounded-circle" src="{% static 'personal_portfolio/images/filler_profile_image.jpg' %}" width=42px height=42px>
+                {% endif %}
+              </li>
             </li>
           </ul>
         </div>

@@ -20,3 +20,14 @@ class Project(models.Model):
     # This is what shows up in the admin list
     def __str__(self):
         return f"{self.title} - {self.owner}"
+
+
+class Comment(models.Model):
+    project = models.ForeignKey(Project, related_name='comments', on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    text = models.TextField()
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.project.title} - {self.name}"
+

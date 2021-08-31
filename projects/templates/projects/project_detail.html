@@ -75,7 +75,21 @@
     <br>
 {% endif %}
 <hr>
-<p>
-    <a class="btn btn-primary" href="{% url 'projects:all' %}">Back to all projects</a>
-    </p>
+
+<h4>Comments...</h3>
+{% if project.comments.all %}
+    {% for comment in project.comments.all %}
+        <i>{{ comment.name }} - {{ comment.date_added }}</i>
+        <br>
+        {{ comment.text }}
+    {% endfor %}
+{% else %}
+    No comments yet...
+    <a href="#"> Add Comment</a>
+ 
+{% endif %}
+
+<hr>
+
+<a class="btn btn-primary" href="{% url 'projects:all' %}">Back to all projects</a>
 {% endblock %}
