@@ -1,1 +1,14 @@
 .env
+
+<h4>Comments...</h3>
+{% if project.comments.all %}
+    {% for comment in project.comments.all %}
+        <i>{{ comment.name }} - {{ comment.date_added }}</i>
+        <br>
+        {{ comment.text }}
+    {% endfor %}
+{% else %}
+    No comments yet...
+    <a href="#"> Add Comment</a>
+ 
+{% endif %}

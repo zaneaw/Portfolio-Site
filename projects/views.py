@@ -3,10 +3,11 @@ from django.views.generic.edit import UpdateView, FormView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import View
 
 from projects.owner import OwnerListView, OwnerDetailView, OwnerDeleteView
-from projects.forms import ProjectCreateForm, ProjectUpdateForm
-from projects.models import Project
+from projects.forms import ProjectCreateForm, ProjectUpdateForm, CommentForm
+from projects.models import Project, Comment
 
 
 class ProjectListView(OwnerListView):
@@ -18,18 +19,16 @@ class ProjectDetailView(OwnerDetailView):
     model = Project
     template_name = 'projects/project_detail.html'
 
-    def get_context_data(self, **kwargs):
-        ctx = super(ProjectDetailView, self).get_context_data() # get the context of project in the DB
-        project = get_object_or_404(Project, id=self.kwargs['pk']) # grab the current project by 'pk'
-        total_likes = project.total_likes()
-
-        liked = False # basically doing the same thing 'ProjectLikeView' at bottom
-        if project.likes.filter(id=self.request.user.id).exists():
+    def get(self, request, pk):
+        p = Project.objects.get(id=pk)
+        comments = Comment.objects.filter(project=p).order_by('-date_updated')
+        comment_form = CommentForm()
+        total_likes = p.total_likes()
+        liked = False
+        if p.likes.filter(id=self.request.user.id).exists():
             liked = True
-        
-        ctx["total_likes"] = total_likes
-        ctx["liked"] = liked
-        return ctx
+        ctx = {'project': p, 'total_likes': total_likes, 'liked': liked, 'comment_form': comment_form, 'comments': comments}
+        return render(request, self.template_name, ctx)
 
 
 class ProjectCreateView(LoginRequiredMixin, FormView):
@@ -109,3 +108,24 @@ def ProjectLikeView(request, pk):
     # liked the current project. If it exists, it 'removes' the like. If 
     # it doesn't, it adds the like to the DB\
     # This code then is passed into the ProjectDetailView
+
+
+class CommentCreateView(LoginRequiredMixin, View):
+    model = Comment
+    template_name = 'projects/project_comment_create.html'
+
+    def post(self, request, pk):
+        p = get_object_or_404(Project, id=pk)
+        comment = Comment(
+            text=request.POST['comment'], owner=request.user, project=p)
+        comment.save()
+        return redirect(reverse('projects:project_detail', args=[pk]))
+
+
+class CommentDeleteView(OwnerDeleteView):
+    model = Comment
+    template_name = 'projects/project_comment_delete.html'
+
+    def get_success_url(self):
+        project = self.object.project
+        return reverse('projects:project_detail', args=[project.id])

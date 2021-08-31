@@ -76,18 +76,23 @@
 {% endif %}
 <hr>
 
-<h4>Comments...</h3>
-{% if project.comments.all %}
-    {% for comment in project.comments.all %}
-        <i>{{ comment.name }} - {{ comment.date_added }}</i>
+{% if user.is_authenticated %}
+    <form method="POST" action="{% url 'projects:project_comment_create' project.id%}">
+        {% csrf_token %}
+        {{ comment_form|crispy }}
         <br>
-        {{ comment.text }}
-    {% endfor %}
-{% else %}
-    No comments yet...
-    <a href="#"> Add Comment</a>
- 
+        <input type="submit" value="Comment" class="btn btn-secondary btn-sm">
+    </form>
 {% endif %}
+{% for comment in comments %}
+<p>
+    <i>@{{ comment.owner }} said:<br></i>    {{ comment.text }} <i><br>({{ comment.date_updated|naturaltime}})</i>
+    {% if user == comment.owner %}
+    <a href="{% url 'projects:project_comment_delete' comment.id %}"><i class="fa fa-trash"></i></a>
+
+    {% endif %}
+</p>
+{% endfor %}
 
 <hr>
 

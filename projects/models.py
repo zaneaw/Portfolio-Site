@@ -24,10 +24,13 @@ class Project(models.Model):
 
 class Comment(models.Model):
     project = models.ForeignKey(Project, related_name='comments', on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    text = models.TextField()
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    text = models.TextField(validators=[MinLengthValidator(3, "Comments must be more than 2 characters")])
     date_added = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.project.title} - {self.name}"
+        if len(self.text) < 15:
+            return self.text
+        return self.text + '...'
 
