@@ -81,12 +81,12 @@
         {% csrf_token %}
         {{ comment_form|crispy }}
         <br>
-        <input type="submit" value="Comment" class="btn btn-secondary btn-sm">
+        <input type="submit" value="Add Comment" class="btn btn-secondary btn-sm">
     </form>
 {% endif %}
 {% for comment in comments %}
 <p>
-    <i>@{{ comment.owner }} said:<br></i>    {{ comment.text }} <i><br>({{ comment.date_updated|naturaltime}})</i>
+    <i><small>@<a href="{% url 'accounts:view_profile' comment.owner %}">{{ comment.owner }}</a> said:</small></i>  <br>  {{ comment.text }} <i><br><small>({{ comment.date_updated|naturaltime}})</i></small>
     {% if user == comment.owner %}
     <a href="{% url 'projects:project_comment_delete' comment.id %}"><i class="fa fa-trash"></i></a>
 
