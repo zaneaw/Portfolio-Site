@@ -1,0 +1,11 @@
+
+.row .card {
+    max-width: 45%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.mb-3 {
+    margin: 1rem .5rem;
+    align-items: center;
+}
