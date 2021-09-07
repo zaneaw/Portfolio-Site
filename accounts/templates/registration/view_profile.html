@@ -2,27 +2,53 @@
 {% load static %}
 {% block page_content %}
 <br>
-
-<title>{{ object.user.username|truncatechars:10 }}'s Profile</title>
+<head>
+    <title>{{ object.user.username|truncatechars:10 }}'s Profile</title>
+    <link rel='stylesheet' href="{% static 'css/view_profile.css' %}">
+</head>
 <h2>{{ object.user.username|truncatechars:10 }}'s Profile</h2>
 
 <hr>
-
-{% if object.facebook_url %}
-    <a href="{{ object.facebook_url }}" target="_blank"><img class="fab fa-facebook-square fa-2x" style="color: gray;"></a>
-{% endif %}
-{% if object.twitter_url %}
-    <a href="{{ object.twitter_url }}" target="_blank"><img class="fab fa-twitter-square fa-2x" style="color: gray;"></a>
-{% endif %}
-{% if object.instagram_url %}
-    <a href="{{ object.instagram_url }}" target="_blank"><img class="fab fa-instagram-square fa-2x" style="color: gray;"></a>
-{% endif %}
-{% if object.linkedin_url %}
-    <a href="{{ object.linkedin_url }}" target="_blank"><img class="fab fa-linkedin fa-2x" style="color: gray;"></a>
-{% endif %}
-{% if object.github_url %}
-    <a href="{{ object.github_url }}" target="_blank"><img class="fab fa-github-square fa-2x" style="color: gray;"></a>
-{% endif %}
+<div class="wrapper">
+    {% if object.facebook_url %}
+        <a href="{{ object.facebook_url }}" target="_blank">
+            <div class="icon facebook">
+            <div class="tooltip">Facebook</div>
+            <i class="fab fa-facebook-f"></i>
+            </div>
+        </a>
+    {% endif %}
+    {% if object.twitter_url %}
+        <a href="{{ object.twitter_url }}" target="_blank">
+            <div class="icon twitter">
+            <div class="tooltip">Twitter</div>
+            <i class="fab fa-twitter"></i>
+            </div>
+        </a>
+    {% endif %}
+    {% if object.instagram_url %}
+        <a href="{{ object.instagram_url }}" target="_blank">
+            <div class="icon instagram">
+            <div class="tooltip">Instagram</div>
+            <i class="fab fa-instagram"></i>
+            </div>
+        </a>
+    {% endif %}
+    {% if object.github_url %}
+        <a href="{{ object.github_url }}" target="_blank">
+            <div class="icon github">
+            <div class="tooltip">Github</div>
+            <i class="fab fa-github"></i>
+            </div>
+        </a>
+    {% endif %}
+    {% if object.linkedin_url %}
+        <div class="icon linkedin">
+            <div class="tooltip">Linkedin</div>
+        <a href="{{ object.linkedin_url }}" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    {% endif %}
+</div>
 
 <br><br>
 

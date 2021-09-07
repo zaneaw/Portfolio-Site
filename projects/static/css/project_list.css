@@ -1,0 +1,30 @@
+
+.row .card {
+    max-height: 225px;
+    max-width: 45%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.mb-3 {
+    margin: 1rem .5rem;
+    align-items: center;
+}
+
+.col-md-4 img {
+    min-height: 150px; 
+    min-width: 190px;
+    max-height: 150px;
+    max-width: 190px;
+}
+
+.col-md-4 a {
+    margin-top: 2px;
+    min-width: 190px;
+    box-shadow: -3px 3px 10px black;
+}
+
+.card-body {
+    width: 390px;
+    height: 100%;
+}

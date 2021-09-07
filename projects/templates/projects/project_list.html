@@ -3,9 +3,11 @@
 {% block page_content %}
 <head>
     <title>Projects List</title>
-    <link rel="stylesheet" href="{% static 'css/projects.css' %}">
+    <link rel="stylesheet" href="{% static 'css/project_list.css' %}">
 </head>
+
 <h1>Projects</h1>
+
 {% if user.is_authenticated %}
 <a class="btn btn-primary" href="{% url 'projects:project_create' %}">Add a new Project</a>
 {% else %}
@@ -21,16 +23,17 @@
             <div class="row g-0">
                 <div class="col-md-4">
                     {% if project.image %}
-                        <img class="img-fluid rounded-start" src="{{ project.image.url }}">
+                        <img class="img-fluid rounded" src="{{ project.image.url }}">
                     {% else %}
-                        <img class="img-fluid rounded-start" src="{% static 'personal_portfolio/images/filler_project_image.jpg' %}">
+                        <img class="img-fluid rounded" src="{% static 'personal_portfolio/images/filler_project_image.jpg' %}">
                     {% endif %}
+                    <br>
+                    <a href="{% url 'projects:project_detail' project.pk %}" class="btn btn-primary" type="button">Read More</a>
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">{{ project.title }}</h5>
                         <p class="card-text">{{ project.desc|truncatechars:80 }}</p>
-                        <a href="{% url 'projects:project_detail' project.pk %}" class="btn btn-primary" type="button">Read More</a>
                         {% if project.owner == user %}
                             <br>
                             <small><a type="button" class="btn btn-link btn-sm" style="color: #686868;" href="{% url 'projects:project_update' project.pk %}"><i class="fa fa-pencil"></i></a>    
