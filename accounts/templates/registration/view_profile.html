@@ -43,10 +43,12 @@
         </a>
     {% endif %}
     {% if object.linkedin_url %}
-        <div class="icon linkedin">
+        <a href="{{ object.linkedin_url }}" target="_blank">
+            <div class="icon linkedin">
             <div class="tooltip">Linkedin</div>
-        <a href="{{ object.linkedin_url }}" target="_blank"><i class="fab fa-linkedin"></i></a>
-        </div>
+            <i class="fab fa-linkedin"></i>
+            </div>
+        </a>
     {% endif %}
 </div>
 
