@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block page_content %}
+
+<head>
+    <title>Home Page</title>
+    <link rel='stylesheet' href="{% static 'css/home.css' %}">
+</head>
+
+<body class="text-center text-white bg-dark">
+    <main class="px-3">
+        <h1>Welcome</h1>
+        <p class="lead">Thank you for checking out my site. I look forward to hearing from you!</p>
+        <p class="lead">
+        <a href="{% url 'projects:all' %}"
+            class="btn btn-lg fw-bold">Projects</a>
+        </p>
+
+        <div class="mt-auto text-muted">
+            <p>Site for Zane Wilson, by <a id="pink_link" href="https://github.com/zaneaw" target="_blank">@zaneaw</a>.</p>
+        </div>
+    </main>
+</body>
+{% endblock %}

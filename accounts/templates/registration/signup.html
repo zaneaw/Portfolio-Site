@@ -1,26 +1,34 @@
 {% extends 'base.html' %}
+{% load static %}
 {% load crispy_forms_tags %}
 {% block page_content %}
-
-{% if not user.is_authenticated %}
+<head>
     <title>Sign Up</title>
-    <h2>Sign Up</h2>
-    <hr>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <br>
-        <input type="submit" class="btn btn-primary" value="Sign Up"></input>
-        <p>Already have an account?<a type="button" class="btn btn-link" href="{% url 'login' %}">Log in</a></p>
-    </form>
-{% else %}
-    <title>Redirecting Sign Up Request</title>
-    <h4>Redirecting sign up request...</h4>
-    <p>You already have an account!</p>
-    <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-    </div>
-    <script>setTimeout(function(){ window.location="{% url 'projects:all' %}"; }, 4000);</script>
-{% endif %}
+    <link rel='stylesheet' href="{% static 'css/edit_user.css' %}">
+</head>
+
+<body class="text-white bg-dark">
+    {% if not user.is_authenticated %}
+        <h2>Sign Up</h2>
+        <hr>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <br>
+            <input type="submit" class="btn btn-primary" value="Sign Up">
+            <p class='text-muted'>Already have an account? <a id="pink_link_2" href="{% url 'login' %}">Log in</a></p>
+        </form>
+</body>
+
+<body class="text-center text-white bg-dark">
+    {% else %}
+        <h4>Redirecting sign up request...</h4>
+        <p>You already have an account!</p>
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+        <script>setTimeout(function(){ window.location="{% url 'projects:all' %}"; }, 4000);</script>
+    {% endif %}
+</body>
 
 {% endblock %}

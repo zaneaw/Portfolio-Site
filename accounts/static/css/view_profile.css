@@ -1,40 +1,36 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins';
+body img.img-fluid {
+  border: 3px solid #fff;
+  float: right;
+  height: 225px;
+  width: auto;
+  margin-right: 3%;
 }
 
-*:focus,
-*:active {
-  outline: none !important;
-  -webkit-tap-highlight-color: transparent;
-}
 
-.tooltip {
-  font-family: 'Poppins';
-}
-
+/* ===========
+=Social Media=
+============ */
 .wrapper {
   display: inline-flex;
+  margin-bottom: 15px;
 }
 
 .wrapper .icon {
   position: relative;
-  background-color: #ffffff;
+  background-color: #212529;
+  color: #fff;
   border-radius: 50%;
   padding: 15px;
   margin: 10px;
   width: 60px;
   height: 60px;
-  font-size: 18px;
+  font-size: 28px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }

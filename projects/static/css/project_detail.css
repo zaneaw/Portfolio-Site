@@ -1,25 +1,66 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins';
+#like_unlike {
+  float: right;
+  margin-top: -8px;
+  margin-right: 40px;
+  text-align: end;
 }
 
-*:focus,
-*:active {
-  outline: none !important;
-  -webkit-tap-highlight-color: transparent;
+#like_unlike button {
+  margin-bottom: 4px;
 }
 
+body #action_edit {
+  overflow: hidden;
+  color: white;
+  text-decoration: none;
+  padding: 2px;
+  border-color: transparent;
+}
+
+body #action_delete {
+  overflow: hidden;
+  color: white;
+  text-decoration: none;
+  padding: 2px;
+  border-color: transparent;
+}
+
+body #action_edit:hover,
+body #action_edit:focus {
+  color: white;
+  padding: 2px;
+  border-radius: 5px;
+  box-shadow: inset 10.6em 0 0 0 dodgerblue;
+  transition: all .5s;
+}
+
+body #action_delete:hover,
+body #action_delete:focus {
+  color: white;
+  padding: 2px;
+  border-radius: 5px;
+  box-shadow: inset 10.6em 0 0 0 tomato;
+  transition: all .5s;
+}
+
+body input.btn-secondary {
+  margin-top: 4px;
+  margin-bottom: 20px;
+}
+
+
+/* ===========
+=Social Media=
+============ */
 .wrapper {
   display: inline-flex;
 }
 
 .wrapper .icon {
   position: relative;
-  background-color: #ffffff;
+  background-color: #212529;
+  color: #fff;
   border-radius: 50%;
   padding: 15px;
   margin: 5px;
@@ -30,7 +71,7 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }

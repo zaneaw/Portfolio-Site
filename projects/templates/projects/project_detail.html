@@ -5,128 +5,129 @@
 {% block page_content %}
 
 <head>
-    <link rel='stylesheet' href="{% static 'css/project_detail.css' %}"
+    <link rel='stylesheet' href="{% static 'css/project_detail.css' %}">
 </head>
 
-{% if project.title %}
-    <title>{{ project.title|truncatechars:18 }}</title>
-    <h2>{{ project.title }}</h2>
-{% else %}
-    <title>Project Details</title>
-    <h2>Project Details</h2>
-{% endif %}
+<body class="text-white bg-dark">
+    {% if project.title %}
+        <title>{{ project.title|truncatechars:18 }}</title>
+        <h2>{{ project.title }}</h2>
+    {% else %}
+        <title>Project Details</title>
+        <h2>Project Details</h2>
+    {% endif %}
 
-<div><i><small>Posted by: {{ project.owner.username }} | 
-    <a href="{% url 'accounts:view_profile' project.owner.username %}">View Profile</a><br></small></i>
-</div>
-
-<div class="wrapper">
-    {% if project.owner.profile.facebook_url %}
-        <a href="{{ project.owner.profile.facebook_url }}" target="_blank">
-            <div class="icon facebook">
-            <div class="tooltip">Facebook</div>
-            <i class="fab fa-facebook-f"></i>
-            </div>  
-        </a>
-    {% endif %}
-    {% if project.owner.profile.twitter_url %}
-        <a href="{{ project.owner.profile.twitter_url }}" target="_blank">
-            <div class="icon twitter">
-            <div class="tooltip">Twitter</div>
-            <i class="fab fa-twitter"></i>
-            </div>
-        </a>
-    {% endif %}
-    {% if project.owner.profile.instagram_url %}
-        <a href="{{ project.owner.profile.instagram_url }}" target="_blank">
-            <div class="icon instagram">
-            <div class="tooltip">Instagram</div>
-            <i class="fab fa-instagram"></i>
-            </div>
-        </a>
-    {% endif %}
-    {% if project.owner.profile.github_url %}
-        <a href="{{ project.owner.profile.github_url }}" target="_blank">
-            <div class="icon github">
-            <div class="tooltip">Github</div>
-            <i class="fab fa-github"></i>
-            </div>
-        </a>
-    {% endif %}
-    {% if project.owner.profile.linkedin_url %}
-        <a href="{{ project.owner.profile.linkedin_url }}" target="_blank">
-            <div class="icon linkedin">
-            <div class="tooltip">Linkedin</div>
-            <i class="fab fa-linkedin"></i>
-            </div>
-        </a>
-    {% endif %}
-</div>
-
-{% if user.is_authenticated %}
-    <form action="{% url 'projects:project_like' project.pk %}" method="POST">
-        {% csrf_token %}
-        {% if not liked %}
-            <button type="submit" name="project_pk" value="{{ project.pk }}" class="btn btn-link btn-sm"><i class="fas fa-thumbs-up fa-sm" style="color: dodgerblue;"></i></button>
-        {% else %}
-            <button type="submit" name="project_pk" value="{{ project.pk }}" class="btn btn-link btn-sm"><i class="fas fa-thumbs-down fa-sm" style="color: Tomato;"></i></button>
+    <div><i><small>Posted by: {{ project.owner.username }} | 
+        <a id="pink_link_2" href="{% url 'accounts:view_profile' project.owner.username %}">View Profile</a><br></small></i>
+    </div>
+    <!-- Social Media Links -->
+    <div class="wrapper">
+        {% if project.owner.profile.facebook_url %}
+            <a href="{{ project.owner.profile.facebook_url }}" target="_blank">
+                <div class="icon facebook">
+                <div class="tooltip">Facebook</div>
+                <i class="fab fa-facebook-f"></i>
+                </div>  
+            </a>
         {% endif %}
-            - {{ total_likes }} 
-        {% if total_likes == 1 %} Like {% else %} Likes {% endif %}
-    </form>
-{% else %}
-    <p><button type="" class="btn btn-link btn-sm"><i class="fas fa-thumbs-up fa-sm" style="color: black;"></i></button><small>- {{ total_likes }} 
-    {% if total_likes == 1 %} Like {% else %} Likes {% endif %}</small></p>
-    <p><a type="button" class="btn btn-primary" href="{% url 'login' %}">Log in</a>
-         or <a type="button" class="btn btn-primary" href="{% url 'accounts:signup' %}?next={% url 'projects:all' %}">Sign up</a>
-          to like your favorite projects and show some support!</p>
-{% endif %}
+        {% if project.owner.profile.twitter_url %}
+            <a href="{{ project.owner.profile.twitter_url }}" target="_blank">
+                <div class="icon twitter">
+                <div class="tooltip">Twitter</div>
+                <i class="fab fa-twitter"></i>
+                </div>
+            </a>
+        {% endif %}
+        {% if project.owner.profile.instagram_url %}
+            <a href="{{ project.owner.profile.instagram_url }}" target="_blank">
+                <div class="icon instagram">
+                <div class="tooltip">Instagram</div>
+                <i class="fab fa-instagram"></i>
+                </div>
+            </a>
+        {% endif %}
+        {% if project.owner.profile.github_url %}
+            <a href="{{ project.owner.profile.github_url }}" target="_blank">
+                <div class="icon github">
+                <div class="tooltip">Github</div>
+                <i class="fab fa-github"></i>
+                </div>
+            </a>
+        {% endif %}
+        {% if project.owner.profile.linkedin_url %}
+            <a href="{{ project.owner.profile.linkedin_url }}" target="_blank">
+                <div class="icon linkedin">
+                <div class="tooltip">Linkedin</div>
+                <i class="fab fa-linkedin"></i>
+                </div>
+            </a>
+        {% endif %}
+    </div>
 
-<hr>
-
-<p>
-{{ project.desc }}
-</p>
-
-<br>
-
-{% if project.repo %}
-    <a href="{{ project.repo }}">View Project Source Code</a>
-{% else %}
-    <p>No repository link.</p>
-{% endif %}
-
-<br>
-
-{% if project.owner == user %}
-    <br>
-    <p>
-        <a href="{% url 'projects:project_update' project.pk %}">Edit <i class="fa fa-pencil"></i></a> | 
-        <a href="{% url 'projects:project_delete' project.pk %}?next={% url 'projects:all' %}">Delete <i class="fa fa-trash"></i></a>
-    </p>
-    <br>
-{% endif %}
-<hr>
-
-{% if user.is_authenticated %}
-    <form method="POST" action="{% url 'projects:project_comment_create' project.id%}">
+<form action="{% url 'projects:project_like' project.pk %}" method="POST" id="like_unlike">
+    {% if user.is_authenticated %}
         {% csrf_token %}
-        {{ comment_form|crispy }}
+        {% if liked %}<i class="text-muted">(liked)</i>{% endif %}
+        <i class="text-muted">({{ total_likes }}
+        {% if total_likes == 1 %} Like{% else %} Likes{% endif %})</i>
+        {% if not liked %}
+            <button type="submit" name="project_pk" value="{{ project.pk }}" class="btn btn-link"><i id="action2" class="fas fa-thumbs-up" style="color: dodgerblue;"></i></button>
+        {% else %}
+            <button type="submit" name="project_pk" value="{{ project.pk }}" class="btn btn-link"><i id="action2" class="fas fa-thumbs-down" style="color: Tomato;"></i></button>
+        {% endif %}
+    {% else %}
+        <span>Please <strong><a href="{% url 'login' %}" id="pink_link_2">LOG IN</a></strong> to be able to like projects!</span>
         <br>
-        <input type="submit" value="Add Comment" class="btn btn-secondary btn-sm">
-    </form>
-{% endif %}
-{% for comment in comments %}
-<p>
-    <i><small>@<a href="{% url 'accounts:view_profile' comment.owner %}">{{ comment.owner }}</a> said:</small></i>  <br>  {{ comment.text }} <i><br><small>({{ comment.date_updated|naturaltime}})</i></small>
-    {% if user == comment.owner %}
-    <a href="{% url 'projects:project_comment_delete' comment.id %}"><i class="fa fa-trash"></i></a>
-
+        <button type="button" class="btn btn-link"><i class="fas fa-thumbs-up" style="color: dodgerblue;"></i></button>- {{ total_likes }} 
+        {% if total_likes == 1 %} Like {% else %} Likes {% endif %}
     {% endif %}
-</p>
-{% endfor %}
+</form>
 
-<hr>
 
-<a class="btn btn-primary" href="{% url 'projects:all' %}">Back to all projects</a>
+    <hr>
+
+    <p>
+    {{ project.desc }}
+    </p>
+
+    <br>
+
+    {% if project.repo %}
+        <a href="{{ project.repo }}">View Project Source Code</a>
+    {% else %}
+        <p>No repository link.</p>
+    {% endif %}
+
+    <br>
+
+    {% if project.owner == user %}
+        <br>
+        <p>
+            <a id="action_edit" href="{% url 'projects:project_update' project.pk %}">Edit <i id="action2" class="fa fa-pencil"></i></a> | 
+            <a id="action_delete" href="{% url 'projects:project_delete' project.pk %}?next={% url 'projects:all' %}">Delete <i id="action2" class="fa fa-trash"></i></a>
+        </p>
+        <br>
+    {% endif %}
+    <hr>
+
+    {% if user.is_authenticated %}
+        <form method="POST" action="{% url 'projects:project_comment_create' project.id%}">
+            {% csrf_token %}
+            {{ comment_form|crispy }} <input type="submit" value="Add Comment" class="btn btn-secondary btn-sm">
+        </form>
+    {% endif %}
+    {% for comment in comments %}
+    <p>
+        <i><small><a id="pink_link_2" href="{% url 'accounts:view_profile' comment.owner %}">@{{ comment.owner }}</a> said:</small></i>  <br>  {{ comment.text }} <i><br><small>({{ comment.date_updated|naturaltime}})</i></small>
+        {% if user == comment.owner %}
+        <a href="{% url 'projects:project_comment_delete' comment.id %}"><i id="action2" class="fa fa-trash"></i></a>
+
+        {% endif %}
+    </p>
+    {% endfor %}
+
+    <hr>
+
+    <a class="btn btn-primary" href="{% url 'projects:all' %}">Back to all projects</a>
+</body>
 {% endblock %}

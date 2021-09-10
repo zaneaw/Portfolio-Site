@@ -17,7 +17,7 @@ class ProjectCreateForm(forms.ModelForm):
         }
         widgets = {
             "title": forms.TextInput(attrs={"class": "form-control", "placeholder": "Example Title"}),
-            "desc": forms.Textarea(attrs={"class": "form-control", "placeholder": "Lorem ipsum dolor amet mustache knausgaard +1, blue bottle waistcoat tbh semiotics artisan synth stumptown gastropub cornhole celiac swag. Brunch raclette vexillologist post-ironic glossier ennui XOXO mlkshk godard pour-over blog tumblr humblebrag. Blue bottle put a bird on it twee prism biodiesel brooklyn. Blue bottle ennui tbh succulents."}),
+            "desc": forms.Textarea(attrs={"class": "form-control", "placeholder": "Describe your project."}),
             "repo": forms.TextInput(
                 attrs={"class": "form-control", "placeholder": "https://github.com/user-name/repository-name"}
             ),  # Go back to - https://youtu.be/6-XXvUENY_8?t=738

@@ -73,7 +73,7 @@ class EditProfileForm(UserChangeForm):
             "github_url": "GitHub",
         }
         widgets = {
-            "about": forms.Textarea(attrs={"class": "form-control", "placeholder": "Dummy text? More like dummy thicc text, amirite? I'm baby bicycle rights poutine kale chips crucifix chartreuse leggings. Lo-fi mlkshk tousled, ramps PBR&B 8-bit gentrify keytar actually selvage kombucha cloud bread narwhal church-key sustainable. Pork belly put a bird on it blue bottle narwhal before they sold out authentic man braid. Edison bulb bitters artisan fam williamsburg kitsch. Biodiesel whatever marfa roof party raw denim artisan keffiyeh direct trade. Photo booth iPhone art party ennui. Irony sriracha small batch meggings, ennui kale chips paleo vinyl hot chicken authentic semiotics. Tousled trust fund hexagon everyday carry, scenester cardigan keytar +1 distillery four loko messenger bag etsy. Authentic jean shorts tote bag DIY whatever. Tumblr meggings small batch messenger bag fixie. Bitters listicle pour-over freegan hella lo-fi."}),
+            "about": forms.Textarea(attrs={"class": "form-control", "placeholder": "About yourself."}),
             "facebook_url": forms.TextInput(attrs={"class": "form-control", "placeholder": "https://facebook.com/user-name"}),
             "twitter_url": forms.TextInput(attrs={"class": "form-control", "placeholder": "https://twitter.com/user-name"}),
             "instagram_url": forms.TextInput(attrs={"class": "form-control", "placeholder": "https://instagram.com/user-name"}),

@@ -1,20 +1,38 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block page_content %}
+<head>
+    <title>Edit User</title>
+    <link rel='stylesheet' href="{% static 'css/edit_user.css' %}">
+</head>
 
-<title>Edit User</title>
-<h2>Edit User</h2>
+{% if request.user == object %}
+    <body class="text-white bg-dark">
+        <h2>Edit User</h2>
+        <hr>
+        <div class="form-group">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <br>
+                <p>Password:  <a href="{% url 'accounts:change-password' %}" class='btn btn-secondary'>Change Password</a></p>
+                <br>
+                <input type="submit" value="Update" class="btn btn-primary">
+            </form>
+        </div>
+    </body>
+{% else %}
+    <body class="text-center text-white bg-dark">
+        <main class="px-3">
+                <h4>You're not allowed here... And you know it!</h4>
+                <p>Sending you to your own page!</p>
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <script>setTimeout(function(){ window.location="{% url 'accounts:edit_user' request.user.username %}"; }, 4000);</script>
+            {% endif %}
+        </main>
+    </body>
 
-<hr>
-
-<div class="form-group">
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <br>
-        <p>Password:  <a href="{% url 'accounts:change-password' %}" class='btn btn-secondary'>Change Password</a></p>
-        <br><button type="submit" value="Submit" class="btn btn-primary">Update</button>
-    </form>
-</div>
- 
 {% endblock %}

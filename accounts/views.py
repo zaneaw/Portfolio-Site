@@ -28,7 +28,7 @@ class EditUserView(LoginRequiredMixin, generic.UpdateView):
 
     def form_valid(self, form):
         form.save()
-        return redirect('accounts:view_profile', self.object.profile.id)
+        return redirect('accounts:view_profile', self.object.username)
 
 
 class ViewProfileView(generic.DetailView):
@@ -41,17 +41,17 @@ class ViewProfileView(generic.DetailView):
 # https://stackoverflow.com/questions/68956898/return-specific-user-in-django/68956946?noredirect=1#comment121867879_68956946
 
 
-class EditProfileView(LoginRequiredMixin ,generic.UpdateView):
+class EditProfileView(LoginRequiredMixin, generic.UpdateView):
     model = Profile
     form_class = EditProfileForm
     template_name = 'registration/edit_profile.html'
 
     def get_object(self):
-        return self.request.user.profile
+        return get_object_or_404(Profile, user__username=self.kwargs['username'])
 
     def form_valid(self, form):
         form.save()
-        return redirect('accounts:view_profile', self.object.user.username)
+        return redirect('accounts:view_profile', self.object.username)
 
 
 

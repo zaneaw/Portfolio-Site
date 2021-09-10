@@ -1,14 +1,23 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block page_content %}
-<title>Delete Project?</title>
-<h2>Delete Project</h2>
+<head>
+  <title>Delete Project?</title>
+  <link rel='stylesheet' href="{% static 'css/project_delete.css' %}">
+</head>
 
-<p>Are you <strong>SURE</strong> you want to <strong>DELETE</strong> your project: {{ project.title }}?</p>
+<body class="text-center text-white bg-dark">
+  <main class="px-3">
+    <h2>Delete Project</h2>
 
-<form action="" method="POST">
-  {% csrf_token %}
-  <input type="submit" value="Delete">
-  <input type="button" value="Go back" onclick="history.back()">
-</form>
+    <p>Are you <strong>SURE</strong> you want to <strong>DELETE</strong> your project: {{ project.title }}?</p>
+
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input class='btn btn-secondary' type="submit" value="Delete">
+      <input class='btn btn-secondary' type="button" value="Go back" onclick="history.back()">
+    </form>
+  </main>
+</body>
 {% endblock %}
