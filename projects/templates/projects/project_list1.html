@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+<head>
+    <title>Projects List</title>
+    <link rel="stylesheet" href="{% static 'css/project_list.css' %}">
+</head>
+<body class="text-white bg-dark">
+    <h1>Projects</h1>
+    <a class="btn btn-primary" href="{% url 'projects:project_create' %}">Add a new Project</a>
+    <hr>
+    <div class="row justify-content-center">
+    {% if project_list %}
+        {% for project in project_list %}
+            <div class="card mb-3">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        {% if project.image %}
+                            <img class="img-fluid rounded" src="{{ project.image.url }}">
+                        {% else %}
+                            <img class="img-fluid rounded" src="{% static 'personal_portfolio/images/filler_project_image.jpg' %}">
+                        {% endif %}
+                        <br>
+                        <a href="{% url 'projects:project_detail' project.pk %}" class="btn btn-secondary" type="button" id="read_more">Read More</a>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text">{{ project.desc|truncatechars:80 }}</p>
+                            {% if project.owner == user %}
+                                <br>
+                                <small><a type="button" class="btn btn-link btn-sm" href="{% url 'projects:project_update' project.pk %}"><i id="action2" class="fa fa-pencil"></i></a>    
+                                <a type="button" class="btn btn-link btn-sm" href="{% url 'projects:project_delete' project.pk %}"><i id="action2" class="fa fa-trash"></i></a></small>
+                            {% endif %}
+                            <p class="card-text"><small class="text-muted"><i>Posted by: {{ project.owner.username }} - {{ project.total_likes }}
+                                {% if project.total_likes == 1 %} Like {% else %} Likes {% endif %}</i></small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %} 
+    {% else %}
+        <p>There are no projects to display... Maybe try adding some!</p>
+    {% endif %}
+    </div>
+</body>
+{% endblock %}

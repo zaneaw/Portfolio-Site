@@ -1,94 +1,46 @@
+div.album {
+    background-color: hsla(1200, 50%, 0%, 0.1);
+}
 
-.row .card {
-    max-height: 225px;
-    max-width: 45%;
-    padding-left: 0;
-    padding-right: 0;
-    margin: 5px;
+.card {
     background-color: transparent;
-    margin: 1rem .5rem;
-    border: none;
-    top: 0px;
-    right: 0;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.075);
+    transition: transform .8s cubic-bezier(0.68, -1, 0.265, 1.9), box-shadow .2s ease-in;
 }
 
-.row .card:hover {
-    transition: all 0.2s ease-in;
-    border-radius: 4px;
-    z-index: 0;
-    overflow: hidden;
-    box-shadow: none;
-    box-shadow: 0px 0px 15px 1px #333;
+div.col .card:hover {
+    box-shadow: 0 0 3px whitesmoke;
+    transform: scale(1.07);
 }
 
-.col-md-4 img {
-    min-height: 150px; 
-    min-width: 190px;
-    max-height: 150px;
-    max-width: 190px;
+.card-title,
+.card-text {
+    color: #fff;
 }
 
-.col-md-4 a {
-    margin-top: 2px;
-    min-width: 190px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
 }
 
-.card .card-body {
-    width: 390px;
-    height: 100%;
-    padding: 5px;
-    background-color: transparent;
-    text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-}
-
-/* ================
-======Buttons====== 
-================ */
-body a.btn-primary {
-    float: right;
-    margin-top: -40px;
-    margin-right: 1%;
-}
-
-body #read_more {
-    background-color: transparent;
-    border-radius: 4px;
-    border: none;
-    position: relative;
-    transition: all 0.5s;
-    text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
-    color: white;
-}
-
-body #read_more:after {
-    content: '>>';
-    font-weight: bolder;
-    position: absolute;
-    opacity: 0;
-    right: -14px;
-    transition: .5s;
-}
-
-body #read_more:hover {
-    border: none;
-    background-color: transparent;
-    padding-right: 24px;
-    padding-left: 8px;
-    color: #ffa69e;
-}
-
-body #read_more:focus,
-body #read_more:active,
-body #read_more:active:focus {
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
-    opacity: .75;
-}
-
-body #read_more:hover:after {
-    opacity: 1;
-    right: 10px;
-    color: #ffa69e;
-    background-color: transparent;
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+    }
 }
