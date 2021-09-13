@@ -34,6 +34,15 @@ body img.img-fluid {
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
+@media (max-width: 560px) {
+  .wrapper .icon {
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    margin: 6px;
+  }
+}
 
 .wrapper .tooltip {
   position: absolute;

@@ -111,10 +111,34 @@ body input.textinput:focus-visible {
 }
 
 .navbar .navbar-toggler {
-    color: #fff;
-    background-color: red;
+    border: 1px solid #ffa69e;
 }
 
+.navbar .navbar-toggler:hover {
+    border: 3px solid #ffa69e;
+}
+
+.navbar .navbar-toggler:focus,
+.navbar .navbar-toggler:active {
+  box-shadow: 0 0 0 0.25rem #8b5c58;
+}
+
+.navbar-toggler-icon {
+    color: white;
+    padding-top: 4px;
+}
+
+ul.dropdown-menu {
+    background-color: transparent;
+}
+
+ul.dropdown-menu .dropdown-item {
+    color: #fff;
+}
+
+ul.dropdown-menu .dropdown-item:hover {
+    background: hsla(1200, 50%, 0%, 0.3);
+}
 
 /* ================
 ======Footer=======
@@ -123,7 +147,7 @@ footer.footer {
     width: 100%;
     background-color: transparent;
     color: #595b5d;
-    margin-top: auto;
+    margin-bottom: 40px;
 }
 
 footer span {
@@ -205,8 +229,6 @@ body .svg-inline--fa.fa-trash-alt {
   
 body .svg-inline--fa.fa-pencil-alt {
     color: dodgerblue;
-    margin-left: 3px;
-    margin-right: 3px;
   }
 
 
@@ -227,6 +249,7 @@ body a.btn-link:active:focus {
 ================ */
 body {
     min-height: 100vh;
+    overflow-x: auto;
     display: flex;
     flex-direction: column;
     box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
@@ -377,9 +400,3 @@ div.controls {
     margin-bottom: 10px;
 }
 
-@media (max-width: 1399px) {
-    body {
-        background-color: red;
-    }
-    
-}

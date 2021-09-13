@@ -14,7 +14,7 @@
             <h1 class="fw-light">Projects</h1>
             <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
             <p>
-            <a href="#" class="btn btn-primary my-2">Post a Project</a>
+            <a href="{% url 'projects:project_create' %}" class="btn btn-primary my-2">Post a Project</a>
             <a href="#" class="btn btn-secondary my-2">Zane's Resume</a>
             </p>
         </div>
@@ -35,13 +35,18 @@
                             {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">{{ project.title }}</h5>
-                                <p class="card-text">{{ project.desc|truncatechars:80 }}</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                </div>
-                                <small class="text-muted">9 mins</small>
+                                <p class="card-text">{{ project.desc|truncatechars:102 }}</p>
+                                <div class="d-flex justify-content-between align-items-end">
+                                    <a href="{% url 'projects:project_detail' project.pk %}" class="btn btn-secondary" type="button" id="read_more">View</a>
+                                        <div class="btn-group">
+                                            {% if project.owner == user %}
+                                                <a type="button" class="btn btn-link btn-sm" href="{% url 'projects:project_update' project.pk %}"><i id="action2" class="fa fa-pencil"></i></a>    
+                                                <a type="button" class="btn btn-link btn-sm" href="{% url 'projects:project_delete' project.pk %}"><i id="action2" class="fa fa-trash"></i></a>
+                                            {% endif %}        
+                                            <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                                        <small class="text-muted">9 mins</small>
+                                        </div>
                                 </div>
                             </div>
                         </div>
