@@ -4,9 +4,8 @@
 ================ */
 *:focus,
 *:active {
-  outline: none !important;
+  outline: none;
   -webkit-tap-highlight-color: transparent;
-  box-shadow: 0 0 0 rgba(255, 255, 255, .5);
 }
 
 /* ================
@@ -43,11 +42,12 @@ div h5, div h6 {
 }
 
 .form-control,
+textarea.form-control,
 input.textinput,
 input.emailinput {
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.932);
     color: black;
     border-radius: 4px;
     border: 1px solid #ced4da;
@@ -55,6 +55,9 @@ input.emailinput {
 }
 
 body .form-control:focus,
+body .form-control:focus-visible,
+textarea.form-control:focus,
+textarea.form-control:focus-visible,
 body input.textinput:focus,
 body input.textinput:focus-visible {
     font-family: 'Poppins', sans-serif;
@@ -66,6 +69,15 @@ body input.textinput:focus-visible {
     box-shadow: 0 0 3px 2px #ffa69e;
     outline: none;
     font-size: 16px;
+}
+
+#id_comment {
+    width: initial;
+}
+
+#id_comment:focus {
+    width: 80%;
+    transition: all 1s ease-in-out;
 }
 
 .clearablefileinput {

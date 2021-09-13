@@ -167,5 +167,9 @@ STATICFILES_DIRS = (
 LOGOUT_REDIRECT_URL = '/projects'
 LOGIN_REDIRECT_URL = '/projects'
 
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = str(os.getenv('GMAIL_USERNAME'))
+EMAIL_HOST_PASSWORD = str(os.getenv('GMAIL_PASSWORD'))

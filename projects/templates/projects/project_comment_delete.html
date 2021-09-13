@@ -1,14 +1,24 @@
 {% extends "base.html" %}
-{% block content %}
-<h1>Delete Comment</h1>
+{% load crispy_forms_tags %}
+{% load static %}
+{% block page_content %}
 
-<h3>Delete Comment...</h3>
-<p>Are you sure?</p>
-<p>{{ comment.text }}</p>
+<head>
+  <title>Delete Comment</title>
+</head>
 
-<form action="" method="POST">
-  {% csrf_token %}
-  <input type="submit"  class="btn btn-primary" value="Yes, delete.">
-  <a href="{% url 'ads:ad_detail' comment.project.id %}" class="btn btn-secondary">Cancel</a>
-</form>
+<body class="text-center text-white bg-dark">
+  <main class="px-3">
+
+    <h2>Delete Comment...</h2>
+    <p>Are you <strong>sure</strong>?</p>
+    <p>{{ comment.text }}</p>
+
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input type="submit" class="btn btn-secondary" value="Delete">
+      <a href="{% url 'projects:project_detail' comment.project.id %}" class="btn btn-primary">Cancel</a>
+    </form>
+  </main>
+</body>
 {% endblock %}

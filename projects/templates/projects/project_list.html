@@ -12,10 +12,20 @@
         <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
             <h1 class="fw-light">Projects</h1>
-            <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+            <p class="lead text-muted">Below are some of my favorite projects that you can check out. You can like and comment on ones you find interesting. Feel free to post some of your own projects as well! <br>Enjoy!</p>
             <p>
-            <a href="{% url 'projects:project_create' %}" class="btn btn-primary my-2">Post a Project</a>
-            <a href="#" class="btn btn-secondary my-2">Zane's Resume</a>
+                <a href="{% url 'projects:project_create' %}" class="btn btn-primary my-2">Post a Project</a>
+                <a id="resume_button" class="btn btn-secondary my-2">Zane's Resume</a>
+                <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+                <script type="text/javascript">
+                    document.getElementById("resume_button").addEventListener("click", function(){ 
+                        var adobeDCView = new AdobeDC.View({clientId: "52d6bfb1b3564201a2ef68f8715a4f80"});
+                        adobeDCView.previewFile({
+                            content:{location: {url: "https://documentcloud.adobe.com/link/track?uri=urn:aaid:scds:US:b9f59302-f754-4fc5-b114-7921229a91df.pdf"}},
+                            metaData:{fileName: "My Resume"}
+                        }, {embedMode: "LIGHT_BOX"});
+                    });
+                </script>
             </p>
         </div>
         </div>
@@ -35,8 +45,8 @@
                             {% endif %}
                             <div class="card-body">
                                 <h5 class="card-title">{{ project.title }}</h5>
-                                <p class="card-text">{{ project.desc|truncatechars:102 }}</p>
-                                <div class="d-flex justify-content-between align-items-end">
+                                <p class="card-text">{{ project.desc|truncatechars:100 }} <br><br><small class="text-muted">Posted by: {{ project.owner }}</small></p>
+                                <div class="d-flex justify-content-between align-items-center">
                                     <a href="{% url 'projects:project_detail' project.pk %}" class="btn btn-secondary" type="button" id="read_more">View</a>
                                         <div class="btn-group">
                                             {% if project.owner == user %}
