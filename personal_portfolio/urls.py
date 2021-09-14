@@ -10,4 +10,3 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')), # For User Login/Logout
     path('projects/', include("projects.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
