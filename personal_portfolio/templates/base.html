@@ -3,6 +3,7 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
   <link rel='stylesheet' href="{% static 'css/base.css' %}">
   <link rel='stylesheet' href="https://fonts.googleapis.com/css?family=Barlow|Poppins">
   <script src="https://kit.fontawesome.com/9c98221fc8.js" crossorigin="anonymous"></script>
@@ -26,7 +27,7 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Projects</a> 
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu text-white bg-dark" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{% url 'projects:all' %}">View Projects</a>
                 <a class="dropdown-item" href="{% url 'projects:project_create' %}">Create Project</a>
               </ul>
@@ -34,7 +35,7 @@
             <li class="nav-item dropdown">
             {% if user.is_authenticated %}
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.username }}</a> 
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu bg-dark text-white" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{% url 'accounts:view_profile' user.username %}">View Profile</a>
                 <a class="dropdown-item" href="{% url 'accounts:edit_user' user.username %}">Edit User</a>
                 <a class="dropdown-item" href="{% url 'accounts:edit_profile' user.username %}">Edit Profile</a>
@@ -42,7 +43,7 @@
                 <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
             {% else %}
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a> 
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <ul class="dropdown-menu text-white bg-dark" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{% url 'login' %}">Log In</a>
                 <a class="dropdown-item" href="{% url 'accounts:signup' %}">Sign Up</a>
             {% endif %}

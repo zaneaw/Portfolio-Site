@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'accounts.apps.AccountsConfig',
     'home.apps.HomeConfig',
     'projects.apps.ProjectsConfig',
+    'personal_portfolio',
 
     # Extensions
     'django_extensions',
