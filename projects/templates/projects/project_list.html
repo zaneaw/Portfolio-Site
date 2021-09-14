@@ -5,6 +5,7 @@
 <head>
     <title>Projects List</title>
     <link rel="stylesheet" href="{% static 'css/project_list.css' %}">
+    <script type='text/javascript' src="{% static 'js/project_list.js' %}"></script>
 
 </head>
 
@@ -18,17 +19,8 @@
                     <br>Enjoy!</p>
                 <p>
                     <a href="{% url 'projects:project_create' %}" class="btn btn-primary my-2">Post a Project</a>
-                    <a id="resume_button" class="btn btn-secondary my-2">Zane's Resume</a>
-                    <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
-                    <script type="text/javascript">
-                        document.getElementById("resume_button").addEventListener("click", function () {
-                            var adobeDCView = new AdobeDC.View({ clientId: "52d6bfb1b3564201a2ef68f8715a4f80" });
-                            adobeDCView.previewFile({
-                                content: { location: { url: "https://documentcloud.adobe.com/link/track/?locale=en-US&uri=urn%3Aaaid%3Ascds%3AUS%3ApXoGvgcURX-FCJ4GB4uPhw" } },
-                                metaData: { fileName: "My Resume" }
-                            }, { embedMode: "LIGHT_BOX" });
-                        });
-                    </script>
+                    <a type='button' id='resume_button' class="btn btn-secondary my-2" onclick="previewFile()" disabled>Zane's Resume</a>
+                        <script type="text/javascript" src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
                 </p>
             </div>
         </div>
