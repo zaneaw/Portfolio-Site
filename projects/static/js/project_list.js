@@ -24,7 +24,7 @@ function previewFile()
         content: {
             /* Location of file where it is hosted */
             location: {
-                url: "https://documentcloud.adobe.com/link/track/?locale=en-US&uri=urn%3Aaaid%3Ascds%3AUS%3ApXoGvgcURX-FCJ4GB4uPhw",
+                url: "https://documentcloud.adobe.com/link/track?uri=urn:aaid:scds:US:b9f59302-f754-4fc5-b114-7921229a91df",
                 /*
                 If the file URL requires some additional headers, then it can be passed as follows:-
                 header: [
