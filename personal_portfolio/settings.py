@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'autoslug',
     'social_django',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
