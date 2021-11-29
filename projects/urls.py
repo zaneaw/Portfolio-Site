@@ -12,6 +12,7 @@ urlpatterns = [
     path('<int:pk>/update', views.ProjectUpdateView.as_view(), name='project_update'),
     path('<int:pk>/delete', views.ProjectDeleteView.as_view(), name='project_delete'),
     path('<int:pk>/like', views.ProjectLikeView, name='project_like'),
+    # path('jarvis')
 ]
 
 
