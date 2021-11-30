@@ -32,10 +32,10 @@
                 <div class="col">
                     <div class="card">
                         {% if project.image %}
-                        <img class="img-fluid rounded" src="{{ project.image.url }}">
+                        <a href="{% url 'projects:project_detail' project.pk %}"><img class="img-fluid rounded" src="{{ project.image.url }}"></a>
                         {% else %}
-                        <img class="img-fluid rounded"
-                            src="{% static 'personal_portfolio/images/filler_project_image.jpg' %}">
+                        <a href="{% url 'projects:project_detail' project.pk %}"><img class="img-fluid rounded"
+                            src="{% static 'personal_portfolio/images/filler_project_image.jpg' %}"></a>
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ project.title }}</h5>
