@@ -4,9 +4,16 @@ body img.img-fluid {
   float: right;
   height: 225px;
   width: auto;
-  margin-right: 3%;
+  margin-right: 8%;
+  margin-left: 15%;
 }
 
+
+
+div#about p {
+  font-size: large;
+  max-width: 60%;
+}
 
 /* ===========
 =Social Media=
