@@ -1,0 +1,35 @@
+
+/*
+ * Base structure
+ */
+.btn {
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+}
+
+.cover-container {
+  max-width: 42em;
+}
+
+/* Custom default buttons */
+body a.btn {
+  font-family: 'Poppins';
+  color: #333;
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+}
+
+body .btn:hover {
+  background-color: #ffa69e;
+  border-color: #ffa69e;
+}
+
+
+body .btn:focus,
+body .btn:active,
+body .btn:active:focus {
+  background-color: #ffa69e;
+  border-color: #ffa69e;
+  color: #333;
+  box-shadow: 0 0 0 .25rem #925c57;
+}

@@ -1,0 +1,70 @@
+div.album {
+    background-color: hsla(1200, 50%, 0%, 0.1);
+}
+
+.card {
+    background-color: transparent;
+    transition: all .2s ease-in-out;
+}
+
+div.col .card:hover {
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.2);
+}
+
+.card-title,
+.card-text {
+    color: #fff;
+}
+
+.container .col-lg-6 a.btn {
+    height: 40px;
+    width: 150px;
+}
+
+#small_buttons {
+    margin-right: 8px;
+}
+
+body #read_more {
+    background-color: transparent;
+    border-radius: 4px;
+    border: none;
+    position: relative;
+    transition: all 0.5s;
+    text-shadow: 0 .05rem .1rem rgba(143, 143, 143, 0.5);
+    color: #838bc2;
+    font-size: large;
+}
+
+body #read_more:after {
+    content: '>>';
+    font-weight: bolder;
+    position: absolute;
+    opacity: 0;
+    right: -20px;
+    transition: .5s;
+}
+
+body #read_more:hover {
+    border: none;
+    background-color: transparent;
+    padding-right: 32px;
+    padding-left: 0;
+    color: #ffa69e;
+}
+
+body #read_more:focus,
+body #read_more:active,
+body #read_more:active:focus {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    opacity: .75;
+}
+
+body #read_more:hover:after {
+    opacity: 1;
+    right: 10px;
+    color: #ffa69e;
+    background-color: transparent;
+}
