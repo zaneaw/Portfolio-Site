@@ -5,8 +5,6 @@ import dj_database_url
 
 from pathlib import Path
 from decouple import config
-from dotenv import load_dotenv
-load_dotenv()
 
 
 mimetypes.add_type("text/css", ".css", True)
@@ -27,7 +25,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*",]
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
 
 # Application definition
@@ -53,6 +51,7 @@ INSTALLED_APPS = [
     'autoslug',
     'social_django',
     'ckeditor',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -171,7 +170,18 @@ EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = str(os.getenv('GMAIL_USERNAME'))
-EMAIL_HOST_PASSWORD = str(os.getenv('GMAIL_PASSWORD'))
+EMAIL_HOST_USER = config('GMAIL_USERNAME')
+EMAIL_HOST_PASSWORD = config('GMAIL_PASSWORD')
+
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
+AWS_STORAGE_BUCKET_NAME = 'zaneportfolio'
+AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
+AWS_S3_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
+
+
 
 django_heroku.settings(locals())
