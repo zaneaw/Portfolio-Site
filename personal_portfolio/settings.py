@@ -150,6 +150,7 @@ AUTHENTICATION_BACKENDS = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 STATIC_URL = '/static/'
 MEDIA_URL ='/media/'
 
@@ -158,13 +159,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
     )
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
-LOGOUT_REDIRECT_URL = '/projects'
-LOGIN_REDIRECT_URL = '/projects'
-
-
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = 'smtp.gmail.com'
@@ -173,15 +167,15 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = config('GMAIL_USERNAME')
 EMAIL_HOST_PASSWORD = config('GMAIL_PASSWORD')
 
+
 AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'zaneportfolio'
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-AWS_S3_PARAMETERS = {
-    'CacheControl': 'max-age=86400',
-}
-AWS_LOCATION = 'static'
+AWS_QUERYSTRING_AUTH = False
 
+
+LOGOUT_REDIRECT_URL = '/projects'
+LOGIN_REDIRECT_URL = '/projects'
 
 
 django_heroku.settings(locals())
