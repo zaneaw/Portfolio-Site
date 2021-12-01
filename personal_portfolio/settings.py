@@ -23,7 +23,7 @@ APP_NAME = "Zane's Portfolio Website"
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ('*')
 
@@ -168,8 +168,8 @@ EMAIL_HOST_USER = config('GMAIL_USERNAME')
 EMAIL_HOST_PASSWORD = config('GMAIL_PASSWORD')
 
 
-AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID').strip('\n')
-AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY').strip('\n')
+AWS_ACCESS_KEY_ID = config('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = config('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'zaneportfolio'
 AWS_QUERYSTRING_AUTH = False
 
