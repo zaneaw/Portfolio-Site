@@ -1,0 +1,21 @@
+form {
+    margin-left: 2%;
+}
+
+form a {
+    color: #ffa69e;
+}
+
+form a:hover {
+    color: white;
+    transition: all .2s;
+}
+
+form .textinput {
+    width: 40%;
+}
+
+form .textarea {
+    width: 75%;
+    margin-bottom: 20px;
+}
