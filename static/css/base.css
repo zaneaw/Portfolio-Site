@@ -1,13 +1,11 @@
-
 /* ================
 ======Globals======
 ================ */
 *:focus,
 *:active {
-  outline: none;
-  -webkit-tap-highlight-color: transparent;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
 }
-
 /* ================
 +++Navbar spacing++
 ================ */
@@ -24,8 +22,10 @@
     font-weight: 400;
 }
 
-div h1, div h2, 
-div h3, div h4, 
+
+
+div h1, div h2,
+div h3, div h4,
 div h5, div h6 {
     text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
     padding-left: 1%;
@@ -132,7 +132,7 @@ body input.textinput:focus-visible {
 
 .navbar .navbar-toggler:focus,
 .navbar .navbar-toggler:active {
-  box-shadow: 0 0 0 0.25rem #8b5c58;
+    box-shadow: 0 0 0 0.25rem #8b5c58;
 }
 
 .navbar-toggler-icon {
@@ -176,25 +176,25 @@ Social Media Footer
 footer .wrapper {
     display: inline-flex;
     margin-bottom: 2px;
-  }
-  
+}
+
 footer .wrapper .icon {
-position: relative;
-background-color: #212529;
-color: #fff;
-border-radius: 50%;
-padding: 15px;
-margin: 5px 5px 0 5px;
-width: 40px;
-height: 40px;
-font-size: 18px;
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-cursor: pointer;
-transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    background-color: #212529;
+    color: #fff;
+    border-radius: 50%;
+    padding: 15px;
+    margin: 5px 5px 0 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 footer .wrapper a:hover {
@@ -206,28 +206,28 @@ footer .wrapper a {
 }
 
 footer .wrapper .facebook:hover {
-background-color: #0673e7;
-color: #ffffff;
+    background-color: #0673e7;
+    color: #ffffff;
 }
 
 footer .wrapper .twitter:hover {
-background-color: #1d9bf0;
-color: #ffffff;
+    background-color: #1d9bf0;
+    color: #ffffff;
 }
 
 footer .wrapper .instagram:hover {
-background-color: #d93175;
-color: #ffffff;
+    background-color: #d93175;
+    color: #ffffff;
 }
 
 footer .wrapper .github:hover {
-background-color: #8050e1;
-color: #ffffff;
+    background-color: #8050e1;
+    color: #ffffff;
 }
 
 footer .wrapper .linkedin:hover {
-background-color: #0a66c2;
-color: #ffffff;
+    background-color: #0a66c2;
+    color: #ffffff;
 }
 
 
@@ -237,17 +237,17 @@ color: #ffffff;
 body .svg-inline--fa.fa-trash-alt {
     color: tomato;
     margin-left: 3px;
-  }
-  
+}
+
 body .svg-inline--fa.fa-pencil-alt {
     color: dodgerblue;
-  }
+}
 
 
 body #action2:hover {
     opacity: .7;
     transition: all .3s;
-  }
+}
 
 body a.btn-link:focus,
 body a.btn-link:active,
@@ -269,7 +269,7 @@ body {
 
 .px-3 {
     margin-top: 15%;
-  }
+}
 
 div#body_container {
     margin-bottom: 45px;
@@ -399,7 +399,7 @@ body input.clearablefileinput:hover {
     font-size: 1.1rem;
     color: #fff;
     font-weight: bolder;
-    margin:0 0 4px;
+    margin: 0 0 4px;
 }
 
 #hint_id_username {
@@ -411,4 +411,3 @@ body input.clearablefileinput:hover {
 div.controls {
     margin-bottom: 10px;
 }
-
