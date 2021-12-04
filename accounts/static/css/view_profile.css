@@ -1,11 +1,8 @@
 
 body img.img-fluid {
   border: 3px solid #fff;
-  float: right;
   height: 225px;
   width: auto;
-  margin-right: 8%;
-  margin-left: 15%;
 }
 
 
@@ -13,6 +10,7 @@ body img.img-fluid {
 div#about p {
   font-size: large;
   max-width: 60%;
+  margin: 5px 3% 40px;
 }
 
 /* ===========
@@ -41,6 +39,20 @@ div#about p {
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
+
+@media (max-width: 991px) {
+  .wrapper .icon {
+    font-size: 18px;
+    width: 40px;
+    height: 40px;
+    padding: 8px;
+    margin: 6px;
+  }
+  div#about p {
+    max-width: 95%;
+  }
+}
+
 @media (max-width: 560px) {
   .wrapper .icon {
     font-size: 18px;
@@ -48,6 +60,9 @@ div#about p {
     height: 40px;
     padding: 8px;
     margin: 6px;
+  }
+  div#about p {
+    max-width: 95%;
   }
 }
 

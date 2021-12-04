@@ -54,6 +54,9 @@
             </a>
         {% endif %}
     </div>
+    <div id="about">
+        {{ object.about|safe }}
+    </div>
 
     {% if object.profile_pic %}
         <img class="img-fluid" src="{{ object.profile_pic.url }}">
@@ -61,9 +64,7 @@
         <img class="img-fluid" src="{% static 'personal_portfolio/images/filler_profile_image.jpg' %}">
     {% endif %}
     <br>
-    <div id="about">
-        {{ object.about|safe }}
-    </div>
+
     <br><br>
 
     <a class="btn btn-secondary" onclick="goBack()">Go Back</a>
