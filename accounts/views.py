@@ -54,11 +54,10 @@ class EditProfileView(LoginRequiredMixin, generic.UpdateView):
         return redirect('accounts:view_profile', self.object.user)
 
 
-
 class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
     form_class = ChangePasswordForm
     template_name = 'registration/change-password.html'
-    success_url = reverse_lazy('password_success')
+    success_url = reverse_lazy('accounts:password_success')
 
 
 def password_success(request):
