@@ -2,24 +2,23 @@
 {% load static %}
 {% load crispy_forms_tags %}
 {% block page_content %}
+
 <head>
   <title>Update Project</title>
   <link rel="stylesheet" href="{% static 'css/project_update.css' %}">
 </head>
 
 <body class="text-white bg-dark">
-    <h2>Update your Project</h2>
-    <p>
-      <div class="form-group">
-        <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          {{ form.media }}
-          {{ form|crispy }}
-          <br>
-          <input type="submit" value="Submit" class="btn btn-primary">
-          <input type="submit" value="Cancel" class="btn btn-secondary" onclick="window.location.href='{% url 'projects:all' %}';return false;">
-        </form>
-      </div>
-    </p>
+  <h2>Update your Project</h2>
+  <div class="form-group">
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.media }}
+      {{ form|crispy }}
+      <br>
+      <input type="submit" value="Submit" class="btn btn-primary">
+      <input type="submit" value="Cancel" class="btn btn-secondary" onclick="window.location.href='{% url 'projects:all' %}';return false;">
+    </form>
+  </div>
 </body>
 {% endblock %}
